@@ -41,10 +41,12 @@ map("n", "<leader>x", "<cmd> :bd <CR>") -- close current buffer
 map("n", "<leader>X", "<cmd> :bd! <CR>")
 
 -- Telescope
-map("n", "<leader>ff", "<cmd> :Telescope find_files <CR>")
+map("n", "<leader>f", "<cmd> :Telescope find_files <CR>")
 map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
+map("n", "<leader>b", "<cmd> :Telescope buffers<CR>")
 map("n", "<leader>cm", "<cmd> :Telescope git_commits <CR>")
 map("n", "<leader>gt", "<cmd> :Telescope git_status <CR>")
 map("n", "<leader>ss", "<cmd> :Telescope live_grep <CR>")
+map("n", "<leader>s", "<cmd> :lua require('telescope.builtin').current_buffer_fuzzy_find() <CR>")
 
 map("n", "<ESC>", "<cmd> :noh <CR>")

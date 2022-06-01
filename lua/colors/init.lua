@@ -112,11 +112,15 @@ fg("NvimInternalError", red)
 fg("VertSplit", one_bg2)
 
 -- Git signs
-fg_bg("DiffAdd", blue, "NONE")
-fg_bg("DiffChange", grey_fg, "NONE")
-fg_bg("DiffChangeDelete", red, "NONE")
-fg_bg("DiffModified", red, "NONE")
-fg_bg("DiffDelete", red, "NONE")
+--fg_bg("DiffAdd", green, "NONE")
+--fg_bg("DiffChange", yellow, "NONE")
+--fg_bg("DiffChangeDelete", red, "NONE")
+--fg_bg("DiffModified", red, "NONE")
+--fg_bg("DiffDelete", red, "NONE")
+
+fg_bg('GitSignsAdd', green, "NONE")
+fg_bg('GitSignsChange', yellow, "NONE")
+fg_bg('GitSignsDelete', red, "NONE")
 
 -- Indent blankline plugin
 fg("IndentBlanklineChar", line)
