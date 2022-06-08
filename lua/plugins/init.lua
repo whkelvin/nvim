@@ -100,4 +100,24 @@ return require('packer').startup(function()
     end,
   }
 
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require('plugins.configs.hop')
+    end,
+  }
+
+  use {
+    'tversteeg/registers.nvim'
+  }
+
+  use({
+    "gbprod/cutlass.nvim",
+    config = function()
+      require("cutlass").setup({})
+    end
+  })
+
 end)

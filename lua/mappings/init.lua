@@ -2,7 +2,7 @@
 function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
-        options = vim.tbl_extend("force", options, opts)
+      options = vim.tbl_extend("force", options, opts)
     end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -50,3 +50,13 @@ map("n", "<leader>ss", "<cmd> :Telescope live_grep <CR>")
 map("n", "<leader>s", "<cmd> :lua require('telescope.builtin').current_buffer_fuzzy_find() <CR>")
 
 map("n", "<ESC>", "<cmd> :noh <CR>")
+
+-- Hop
+map("n", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
+map("n", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
+map("o", "f", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
+map("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
+
+map("n", "<leader>/", "<cmd> :HopPattern <cr>")
+map("o", "<leader>/", "<cmd> :HopPattern <cr>")
+map("v", "<leader>/", "<cmd> :HopPattern <cr>")
