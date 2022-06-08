@@ -47,7 +47,14 @@ require 'lspconfig'.angularls.setup {
 
 require 'lspconfig'.tsserver.setup {}
 
-require'lspconfig'.solargraph.setup {
+require 'lspconfig'.solargraph.setup {
   capabilities = capabilities,
   on_attach = on_attach
+}
+
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/whkelvin/.omnisharp/OmniSharp"
+
+require 'lspconfig'.omnisharp.setup {
+  cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)};
 }
