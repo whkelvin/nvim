@@ -60,3 +60,12 @@ map("o", "F", "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.
 map("n", "<leader>/", "<cmd> :HopPattern <cr>")
 map("o", "<leader>/", "<cmd> :HopPattern <cr>")
 map("v", "<leader>/", "<cmd> :HopPattern <cr>")
+
+-- LSP
+map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+map("n", "<leader>de", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<leader>re", "<cmd>lua vim.lsp.buf.references()<CR>")
+map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+
