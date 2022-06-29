@@ -12,12 +12,12 @@ return require('packer').startup(function()
     end,
   }
 
-  use {
-    'whkelvin/nvim-base16',
-    config = function()
-      require('plugins.configs.nvim-base16')
-    end,
-  }
+  --use {
+  --  'whkelvin/nvim-base16',
+  --  config = function()
+  --    require('plugins.configs.nvim-base16')
+  --  end,
+  --}
 
   use {
     'feline-nvim/feline.nvim',
@@ -116,8 +116,9 @@ return require('packer').startup(function()
   use({
     "gbprod/cutlass.nvim",
     config = function()
-      require("cutlass").setup({})
+      require("cutlass").setup({
+        cut_key = 'x',
+      })
     end
   })
-
 end)

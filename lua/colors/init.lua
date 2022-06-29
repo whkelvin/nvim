@@ -1,61 +1,9 @@
-local cmd = vim.cmd
+local theme = require("colors/theme")
 
--- Define bg color
--- @param group Group
--- @param color Color
-bg = function(group, col)
-   cmd("hi " .. group .. " guibg=" .. col)
-end
-
--- Define fg color
--- @param group Group
--- @param color Color
-fg = function(group, col)
-   cmd("hi " .. group .. " guifg=" .. col)
-end
-
--- Define bg and fg color
--- @param group Group
--- @param fgcol Fg Color
--- @param bgcol Bg Color
-fg_bg = function(group, fgcol, bgcol)
-   cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
-end
-
-local colors = {
-   white = "#abb2bf",
-   darker_black = "#2a303c",
-   black = "#2E3440", --  nvim bg
-   black2 = "#343a46",
-   one_bg = "#373d49",
-   one_bg2 = "#464c58",
-   one_bg3 = "#494f5b",
-   grey = "#4b515d",
-   grey_fg = "#565c68",
-   grey_fg2 = "#606672",
-   light_grey = "#646a76",
-   red = "#BF616A",
-   baby_pink = "#de878f",
-   pink = "#d57780",
-   line = "#3a404c", -- for lines like vertsplit
-   green = "#A3BE8C",
-   vibrant_green = "#afca98",
-   blue = "#7797b7",
-   nord_blue = "#81A1C1",
-   yellow = "#EBCB8B",
-   sun = "#e1c181",
-   purple = "#aab1be",
-   dark_purple = "#B48EAD",
-   teal = "#6484a4",
-   orange = "#e39a83",
-   cyan = "#9aafe6",
-   statusline_bg = "#333945",
-   lightbg = "#3f4551",
-   lightbg2 = "#393f4b",
-   pmenu_bg = "#A3BE8C",
-   folder_bg = "#7797b7",
-}
-
+local fg = theme.highlight_fg
+local bg = theme.highlight_bg
+local fg_bg = theme.highlight_fg_bg
+local colors = theme.colors
 local black = colors.black
 local black2 = colors.black2
 local blue = colors.blue
@@ -81,7 +29,7 @@ local one_bg3 = colors.one_bg3
 fg("Comment", grey_fg)
 
 -- Disable cursor line
-cmd "hi clear CursorLine"
+vim.cmd "hi clear CursorLine"
 -- Line number
 fg("cursorlinenr", white)
 
@@ -92,31 +40,15 @@ fg("EndOfBuffer", black)
 fg("FloatBorder", blue)
 bg("NormalFloat", darker_black)
 
--- Pmenu
-bg("Pmenu", one_bg)
-bg("PmenuSbar", one_bg2)
-bg("PmenuSel", pmenu_bg)
-bg("PmenuThumb", nord_blue)
-fg("CmpItemAbbr", white)
-fg("CmpItemAbbrMatch", white)
-fg("CmpItemKind", white)
-fg("CmpItemMenu", white)
 
 -- misc
 
 -- inactive statuslines as thin lines
 fg("StatusLineNC", one_bg3 .. " gui=underline")
 
-fg("LineNr", grey)
+fg("LineNr", white)
 fg("NvimInternalError", red)
-fg("VertSplit", one_bg2)
-
--- Git signs
---fg_bg("DiffAdd", green, "NONE")
---fg_bg("DiffChange", yellow, "NONE")
---fg_bg("DiffChangeDelete", red, "NONE")
---fg_bg("DiffModified", red, "NONE")
---fg_bg("DiffDelete", red, "NONE")
+fg("VertSplit", black)
 
 fg_bg('GitSignsAdd', green, "NONE")
 fg_bg('GitSignsChange', yellow, "NONE")
@@ -127,7 +59,6 @@ fg("IndentBlanklineChar", line)
 fg("IndentBlanklineSpaceChar", line)
 
 -- Lsp diagnostics
-
 fg("DiagnosticHint", purple)
 fg("DiagnosticError", red)
 fg("DiagnosticWarn", yellow)
@@ -166,3 +97,10 @@ bg("TelescopeSelection", black2)
 fg("HopNextKey", yellow)
 fg("HopNextKey1", yellow)
 fg("HopNextKey2", blue)
+
+require("colors/highlights/syntax")
+require("colors/highlights/cmp")
+require("colors/highlights/indent-blank-line")
+require("colors/highlights/misc")
+require("colors/highlights/bufferline")
+require("colors/highlights/devicons")
