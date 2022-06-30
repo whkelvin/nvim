@@ -67,5 +67,6 @@ map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "<leader>de", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "<leader>re", "<cmd>lua vim.lsp.buf.references()<CR>")
-map("n", "<leader>p", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+-- formatting is set in null-ls.lua
+map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format()<CR>")
 

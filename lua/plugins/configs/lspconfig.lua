@@ -6,10 +6,32 @@ local opts = { noremap=true, silent=true }
 --vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 --vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+            lsp_formatting(bufnr)
+        end,
+    })
+  end
 end
 
 -- Setup lspconfig.
@@ -29,12 +51,14 @@ require 'lspconfig'.rls.setup {
 
 -- local root_is_introhive = vim.fn.getcwd() == '/Users/whkelvin/Projects/introhive'
 
-require 'lspconfig'.angularls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach
-}
+--require 'lspconfig'.angularls.setup {
+--  capabilities = capabilities,
+--  on_attach = on_attach
+--}
 
-require 'lspconfig'.tsserver.setup {}
+require 'lspconfig'.tsserver.setup {
+  on_attach = on_attach,
+}
 
 require 'lspconfig'.solargraph.setup {
   capabilities = capabilities,
@@ -48,4 +72,6 @@ require 'lspconfig'.omnisharp.setup {
   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)};
 }
 
-require'lspconfig'.vuels.setup{}
+require'lspconfig'.vuels.setup {
+  on_attach = on_attach
+}
