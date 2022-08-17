@@ -37,6 +37,31 @@ end
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+require("null-ls").setup({
+  debug = true,
+  sources = {
+    require("null-ls").builtins.formatting.prettier.with(
+    {
+      prefer_local = "node_modules/.bin",
+    }),
+    require("null-ls").builtins.diagnostics.eslint,
+
+  },
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                vim.lsp.buf.formatting_sync()
+            end,
+        })
+    end
+  end,
+})
+
 require 'lspconfig'.rls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -56,8 +81,17 @@ require 'lspconfig'.rls.setup {
 --  on_attach = on_attach
 --}
 
-require 'lspconfig'.tsserver.setup {
+--require 'lspconfig'.tsserver.setup {
+--  on_attach = on_attach,
+--}
+--
+require'lspconfig'.volar.setup{
   on_attach = on_attach,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+}
+
+require'lspconfig'.tailwindcss.setup{
+  on_attach = on_attach
 }
 
 require 'lspconfig'.solargraph.setup {
@@ -72,9 +106,9 @@ require 'lspconfig'.omnisharp.setup {
   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
 }
 
-require'lspconfig'.vuels.setup {
-  on_attach = on_attach,
-}
+--require'lspconfig'.vuels.setup {
+--  on_attach = on_attach,
+--}
 
 require'lspconfig'.sumneko_lua.setup {
   on_attach = on_attach,
