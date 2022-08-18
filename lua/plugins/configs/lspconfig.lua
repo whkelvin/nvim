@@ -137,6 +137,7 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 require'lspconfig'.dartls.setup {
+  capabilities = capabilities,
   on_attach = function (client)
     -- null-ls will do the formatting
     client.resolved_capabilities.document_formatting = false
