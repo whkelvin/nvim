@@ -7,7 +7,7 @@ local opts = { noremap=true, silent=true }
 --vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
+    vim.lsp.buf.formatting_sync({
         filter = function(client)
             -- apply whatever logic you want (in this example, we'll only use null-ls)
             return client.name == "null-ls"
@@ -45,7 +45,7 @@ require("null-ls").setup({
       prefer_local = "node_modules/.bin",
     }),
     require("null-ls").builtins.diagnostics.eslint,
-
+    require("null-ls").builtins.formatting.dart_format
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -62,17 +62,17 @@ require("null-ls").setup({
   end,
 })
 
-require 'lspconfig'.rls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    rust = {
-      unstable_features = false,
-      build_on_save = false,
-      all_features = true,
-    }
-  }
-}
+-- require 'lspconfig'.rls.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   settings = {
+--     rust = {
+--       unstable_features = false,
+--       build_on_save = false,
+--       all_features = true,
+--     }
+--   }
+-- }
 
 -- local root_is_introhive = vim.fn.getcwd() == '/Users/whkelvin/Projects/introhive'
 
@@ -86,32 +86,34 @@ require 'lspconfig'.rls.setup {
 --}
 --
 require'lspconfig'.volar.setup{
-  on_attach = on_attach,
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 }
 
-require'lspconfig'.tailwindcss.setup{
-  on_attach = on_attach
-}
-
-require 'lspconfig'.solargraph.setup {
-  capabilities = capabilities,
-  on_attach = on_attach
-}
-
-local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/whkelvin/.omnisharp/OmniSharp"
-
-require 'lspconfig'.omnisharp.setup {
-  cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
-}
+-- require'lspconfig'.tailwindcss.setup{
+--   on_attach = on_attach
+-- }
+-- 
+-- require 'lspconfig'.solargraph.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach
+-- }
+-- 
+-- local pid = vim.fn.getpid()
+-- local omnisharp_bin = "/home/whkelvin/.omnisharp/OmniSharp"
+-- 
+-- require 'lspconfig'.omnisharp.setup {
+--   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
+-- }
 
 --require'lspconfig'.vuels.setup {
 --  on_attach = on_attach,
 --}
 
 require'lspconfig'.sumneko_lua.setup {
-  on_attach = on_attach,
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.resolved_capabilities.document_formatting = false
+  end,
   settings = {
     Lua = {
       runtime = {
@@ -132,4 +134,11 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+}
+
+require'lspconfig'.dartls.setup {
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.resolved_capabilities.document_formatting = false
+  end
 }
