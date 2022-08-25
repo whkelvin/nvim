@@ -94,8 +94,8 @@ fg_bg("TelescopeResultsTitle", darker_black, darker_black)
 
 bg("TelescopeSelection", black2)
 
-fg("HopNextKey", yellow)
-fg("HopNextKey1", yellow)
+fg("HopNextKey", blue)
+fg("HopNextKey1", blue)
 fg("HopNextKey2", blue)
 
 require("colors/highlights/syntax")
