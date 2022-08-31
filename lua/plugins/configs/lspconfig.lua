@@ -85,8 +85,13 @@ require("null-ls").setup({
 --  on_attach = on_attach,
 --}
 --
-require'lspconfig'.volar.setup{
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+require 'lspconfig'.volar.setup {
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  capabilities = capabilities,
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.resolved_capabilities.document_formatting = false
+  end
 }
 
 -- require'lspconfig'.tailwindcss.setup{
