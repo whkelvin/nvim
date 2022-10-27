@@ -112,10 +112,6 @@ return require('packer').startup(function()
     end,
   }
 
-  use {
-    'tversteeg/registers.nvim'
-  }
-
   use({
     "gbprod/cutlass.nvim",
     config = function()

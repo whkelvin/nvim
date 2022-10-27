@@ -7,7 +7,7 @@ local opts = { noremap=true, silent=true }
 --vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 local lsp_formatting = function(bufnr)
-    vim.lsp.buf.formatting_sync({
+    vim.lsp.buf.format({
         filter = function(client)
             -- apply whatever logic you want (in this example, we'll only use null-ls)
             return client.name == "null-ls"
@@ -55,7 +55,7 @@ require("null-ls").setup({
             buffer = bufnr,
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                vim.lsp.buf.formatting_sync()
+                vim.lsp.buf.format()
             end,
         })
     end
@@ -81,18 +81,23 @@ require("null-ls").setup({
 --  on_attach = on_attach
 --}
 
---require 'lspconfig'.tsserver.setup {
---  on_attach = on_attach,
---}
---
-require 'lspconfig'.volar.setup {
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+require 'lspconfig'.tsserver.setup {
+  filetypes = {'typescript', 'javascript'},
   capabilities = capabilities,
   on_attach = function (client)
     -- null-ls will do the formatting
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
 }
+
+--require 'lspconfig'.volar.setup {
+--  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+--  capabilities = capabilities,
+--  on_attach = function (client)
+--    -- null-ls will do the formatting
+--    client.server_capabilities.document_formatting = false
+--  end
+--}
 
 -- require'lspconfig'.tailwindcss.setup{
 --   on_attach = on_attach
@@ -103,12 +108,12 @@ require 'lspconfig'.volar.setup {
 --   on_attach = on_attach
 -- }
 -- 
--- local pid = vim.fn.getpid()
--- local omnisharp_bin = "/home/whkelvin/.omnisharp/OmniSharp"
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/Users/whkelvin/.omnisharp/OmniSharp"
 -- 
--- require 'lspconfig'.omnisharp.setup {
---   cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
--- }
+require 'lspconfig'.omnisharp.setup {
+  cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid)},
+}
 
 --require'lspconfig'.vuels.setup {
 --  on_attach = on_attach,
@@ -117,7 +122,7 @@ require 'lspconfig'.volar.setup {
 require'lspconfig'.sumneko_lua.setup {
   on_attach = function (client)
     -- null-ls will do the formatting
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end,
   settings = {
     Lua = {
@@ -145,6 +150,10 @@ require'lspconfig'.dartls.setup {
   capabilities = capabilities,
   on_attach = function (client)
     -- null-ls will do the formatting
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
+}
+
+require 'lspconfig'.clangd.setup{
+  capabilities = capabilities,
 }
