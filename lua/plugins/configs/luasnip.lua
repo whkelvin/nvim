@@ -1,4 +1,4 @@
-local present, luasnip =pcall(require, "luasnip")
+local present, luasnip = pcall(require, "luasnip")
 
 luasnip.config.set_config {
   history = true,

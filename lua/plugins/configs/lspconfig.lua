@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require("null-ls").setup({
   debug = true,
@@ -55,7 +55,7 @@ require("null-ls").setup({
             buffer = bufnr,
             callback = function()
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                vim.lsp.buf.formatting_sync()
+                vim.lsp.buf.format()
             end,
         })
     end
@@ -82,7 +82,12 @@ require 'lspconfig'.rls.setup {
 --}
 
 --require 'lspconfig'.tsserver.setup {
---  on_attach = on_attach,
+--filetypes = {'typescript', 'javascript'},
+--capabilities = capabilities,
+--on_attach = function (client)
+--  -- null-ls will do the formatting
+--  client.server_capabilities.document_formatting = false
+--end
 --}
 --
 require'lspconfig'.volar.setup{
@@ -111,7 +116,10 @@ require 'lspconfig'.omnisharp.setup {
 --}
 
 require'lspconfig'.sumneko_lua.setup {
-  on_attach = on_attach,
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.server_capabilities.document_formatting = false
+  end,
   settings = {
     Lua = {
       runtime = {

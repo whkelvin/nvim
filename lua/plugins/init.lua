@@ -46,6 +46,9 @@ return require('packer').startup(function()
 
   use {
     'L3MON4D3/LuaSnip',
+    requires = {
+      'rafamadriz/friendly-snippets'
+    },
     config = function()
       require('plugins.configs.luasnip')
     end,
@@ -107,10 +110,6 @@ return require('packer').startup(function()
       -- you can configure Hop the way you like here; see :h hop-config
       require('plugins.configs.hop')
     end,
-  }
-
-  use {
-    'tversteeg/registers.nvim'
   }
 
   use({

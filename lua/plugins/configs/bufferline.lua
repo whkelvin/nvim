@@ -4,8 +4,6 @@ if not present then
   return
 end
 
-local colors = require("colors/theme").colors
-
 local options = {
   options = {
      offsets = { { filetype = "NvimTree", text = "", padding = 0 } },
