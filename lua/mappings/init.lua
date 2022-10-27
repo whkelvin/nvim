@@ -67,6 +67,10 @@ map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "<leader>de", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 map("n", "<leader>re", "<cmd>lua vim.lsp.buf.references()<CR>")
--- formatting is set in null-ls.lua
+map("n", "<leader>e", "<cmd> lua vim.diagnostic.open_float()<CR>")
+map("n", "<leader>ne", "<cmd> lua vim.diagnostic.goto_next()<CR>")
+map("n", "<leader>pe", "<cmd> lua vim.diagnostic.goto_prev()<CR>")
+map("n", "<leader>a", "<cmd> lua vim.lsp.buf.code_action()<CR>")
+--
 map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format()<CR>")
 

@@ -7,6 +7,7 @@ end
 
 local options = {
    ensure_installed = "all",
+   ignore_install = {"phpdoc"},
    highlight = {
       enable = true,
       use_languagetree = true,
