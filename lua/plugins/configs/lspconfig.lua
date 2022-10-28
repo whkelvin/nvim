@@ -45,7 +45,6 @@ require("null-ls").setup({
       prefer_local = "node_modules/.bin",
     }),
     require("null-ls").builtins.diagnostics.eslint,
-
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -81,19 +80,20 @@ require 'lspconfig'.rls.setup {
 --  on_attach = on_attach
 --}
 
---require 'lspconfig'.tsserver.setup {
---filetypes = {'typescript', 'javascript'},
---capabilities = capabilities,
---on_attach = function (client)
---  -- null-ls will do the formatting
---  client.server_capabilities.document_formatting = false
---end
---}
---
-require'lspconfig'.volar.setup{
-  on_attach = on_attach,
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+require 'lspconfig'.tsserver.setup {
+  filetypes = {'typescript', 'javascript'},
+  capabilities = capabilities,
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.server_capabilities.document_formatting = false
+  end
 }
+
+--
+--require'lspconfig'.volar.setup{
+--  on_attach = on_attach,
+--  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+--}
 
 require'lspconfig'.tailwindcss.setup{
   on_attach = on_attach

@@ -22,7 +22,6 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
       custom_only = false,
       list = {
         -- user mappings go here
-
       },
     },
   },

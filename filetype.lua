@@ -1,5 +1,5 @@
-vim.filetype.add({
-  extension = {
-    jbuilder = "ruby",
-  },
-})
+--vim.filetype.add({
+--  extension = {
+--    jbuilder = "ruby",
+--  },
+--})

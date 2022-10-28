@@ -6,11 +6,11 @@ end
 
 local options = {
   options = {
-     offsets = { { filetype = "NvimTree", text = "", padding = 0 } },
+     offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
      buffer_close_icon = "",
      modified_icon = "",
      close_icon = "",
-     show_close_icon = true,
+     show_close_icon = false,
      left_trunc_marker = "",
      right_trunc_marker = "",
      max_name_length = 25,
@@ -20,7 +20,7 @@ local options = {
      enforce_regular_tabs = false,
      view = "multiwindow",
      show_buffer_close_icons = true,
-     separator_style = "thin",
+     separator_style = "thick",
      always_show_bufferline = true,
      diagnostics = false,
      custom_filter = function(buf_number)
@@ -41,6 +41,7 @@ local options = {
         return true
      end,
   },
+  highlights = require('colors.highlights.bufferline').get_highlights(),
 }
 
 bufferline.setup(options)

@@ -10,7 +10,6 @@ local options = {
    ignore_install = {"phpdoc"},
    highlight = {
       enable = true,
-      use_languagetree = true,
    },
 }
 
