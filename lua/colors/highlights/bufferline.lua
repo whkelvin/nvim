@@ -169,6 +169,7 @@ function bufferline.get_highlights()
     },
     offset_separator = {
       bg = theme.base16.base00,
+      fg = theme.base16.base00,
     },
   }
 end
