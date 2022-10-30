@@ -37,14 +37,21 @@ end
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require("null-ls").setup({
+local null_ls_status_ok, null_ls = pcall(require, 'null-ls')
+
+if not null_ls_status_ok then
+  print('null ls not working');
+  return
+end
+
+null_ls.setup({
   debug = true,
   sources = {
-    require("null-ls").builtins.formatting.prettier.with(
-    {
+    null_ls.builtins.formatting.prettier.with({
       prefer_local = "node_modules/.bin",
+      filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte"}
     }),
-    require("null-ls").builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.eslint,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -53,7 +60,6 @@ require("null-ls").setup({
             group = augroup,
             buffer = bufnr,
             callback = function()
-                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
                 vim.lsp.buf.format()
             end,
         })
@@ -89,10 +95,19 @@ require 'lspconfig'.tsserver.setup {
   end
 }
 
+require 'lspconfig'.svelte.setup {
+  capabilities = capabilities,
+  on_attach = function (client)
+    client.server_capabilities.document_formatting = false
+  end
+}
+
 --
 --require'lspconfig'.volar.setup{
---  on_attach = on_attach,
---  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+--  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+--  on_attach = function (client)
+--    client.server_capabilities.document_formatting = false
+--  end
 --}
 
 require'lspconfig'.tailwindcss.setup{

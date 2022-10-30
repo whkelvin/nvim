@@ -6,7 +6,7 @@ end
 
 local options = {
   options = {
-     offsets = { { filetype = "NvimTree", text = "NvimTree", padding = 1, separator = false } },
+     offsets = { { filetype = "NvimTree", text = "NvimTree", padding = 0, separator = true } },
      buffer_close_icon = "",
      modified_icon = "",
      close_icon = "",

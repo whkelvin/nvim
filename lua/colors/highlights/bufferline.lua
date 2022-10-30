@@ -83,8 +83,7 @@ function bufferline.get_highlights()
       bg = theme.base16.base00,
     },
     info_diagnostic_visible = {
-        fg = '<colour-value-here>',
-        bg = '<colour-value-here>'
+      bg = theme.base16.base00,
     },
     info_diagnostic_selected = {
       bg = theme.base16.base00,
@@ -144,7 +143,7 @@ function bufferline.get_highlights()
       bg = theme.base16.base00,
     },
     separator_selected = {
-      fg = theme.base16.base00,
+      fg = theme.colors.nord_blue,
       bg = theme.base16.base00,
     },
     separator_visible = {
@@ -157,6 +156,7 @@ function bufferline.get_highlights()
     },
     indicator_selected = {
       bg = theme.base16.base00,
+      fg = theme.base16.base00,
     },
     pick_selected = {
       bg = theme.base16.base00,
@@ -168,8 +168,8 @@ function bufferline.get_highlights()
       bg = theme.base16.base00,
     },
     offset_separator = {
-      bg = theme.base16.base00,
-      fg = theme.base16.base00,
+      bg = theme.colors.darker_black,
+      fg = theme.colors.darker_black,
     },
   }
 end
