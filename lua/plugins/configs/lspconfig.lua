@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require("null-ls").setup({
   debug = true,
@@ -119,7 +119,7 @@ require 'lspconfig'.omnisharp.setup {
 --  on_attach = on_attach,
 --}
 
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   on_attach = function (client)
     -- null-ls will do the formatting
     client.server_capabilities.document_formatting = false
@@ -154,6 +154,19 @@ require'lspconfig'.dartls.setup {
   end
 }
 
-require 'lspconfig'.clangd.setup{
+--require 'lspconfig'.clangd.setup{
+--  capabilities = capabilities,
+--}
+
+
+require'lspconfig'.gopls.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.bufls.setup{
+  capabilities = capabilities,
+}
+
+require'lspconfig'.jedi_language_server.setup{
   capabilities = capabilities,
 }
