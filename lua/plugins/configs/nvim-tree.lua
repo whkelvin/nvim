@@ -51,6 +51,7 @@ require("nvim-tree").setup({
 		icons = {
 			webdev_colors = true,
 		},
+		root_folder_label = ":~:s?$??",
 	},
 	filters = {
 		dotfiles = false,

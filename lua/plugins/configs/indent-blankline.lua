@@ -21,6 +21,7 @@ local options = {
 		"nvchad_cheatsheet",
 		"lsp-installer",
 		"NvimTree",
+		"startup",
 		"",
 	},
 	buftype_exclude = { "terminal" },

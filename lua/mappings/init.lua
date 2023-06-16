@@ -1,4 +1,3 @@
--- Functional wrapper for mapping custom keybindings
 function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
@@ -6,24 +5,6 @@ function map(mode, lhs, rhs, opts)
 	end
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
---map = function(mode, keys, command, opt)
---   local options = { noremap = true, silent = true }
---
---   if opt then
---      options = vim.tbl_extend("force", options, opt)
---   end
---
---   if type(keys) == "table" then
---      for _, keymap in ipairs(keys) do
---         map(mode, keymap, command, opt)
---      end
---      return
---   end
---
---   vim.keymap.set(mode, keys, command, opt)
---   vim.api.nvim_set_keymap(mode, keys, command, opt)
---end
 
 -- navigation between windows
 map("n", "<C-h>", "<C-w>h")
