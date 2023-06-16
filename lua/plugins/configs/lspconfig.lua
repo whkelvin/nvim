@@ -52,6 +52,7 @@ null_ls.setup({
       filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "css", "scss", "less", "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "svelte"}
     }),
     null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.gofmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -130,7 +131,7 @@ require 'lspconfig'.omnisharp.setup {
 --  on_attach = on_attach,
 --}
 
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   on_attach = function (client)
     -- null-ls will do the formatting
     client.server_capabilities.document_formatting = false
@@ -155,4 +156,11 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+}
+
+require'lspconfig'.gopls.setup{
+  on_attach = function (client)
+    -- null-ls will do the formatting
+    client.server_capabilities.document_formatting = false
+  end,
 }
