@@ -36,10 +36,25 @@ lsp_server.lua_ls.setup({
 	},
 })
 
+lsp_server.tsserver.setup({
+	filetypes = { "typescript", "javascript" },
+})
+
+lsp_server.svelte.setup({})
+
+lsp_server.gopls.setup({})
+
+lsp_server.tailwindcss.setup({})
+
 local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.formatting.gofmt,
+		null_ls.builtins.formatting.dart_format.with({
+			args = { "format", "--line-length=120" },
+		}),
 	},
 	on_attach = on_attach,
 })
