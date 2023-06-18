@@ -97,4 +97,21 @@ return require("packer").startup(function(use)
 			require("plugins.configs.startup")
 		end,
 	})
+
+	use({
+		"feline-nvim/feline.nvim",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+		},
+		config = function()
+			require("plugins.configs.feline")
+		end,
+	})
+
+	use({
+		"whkelvin/winbar.nvim",
+		config = function()
+			require("plugins.configs.winbar")
+		end,
+	})
 end)

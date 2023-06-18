@@ -15,9 +15,9 @@ map("n", "<C-j>", "<C-w>j")
 -- NvimTree
 map("n", "<leader>n", ":NvimTreeToggle<CR>")
 
--- Bufferline
-map("n", "<TAB>", "<cmd> :BufferLineCycleNext <CR>")
-map("n", "<S-Tab>", "<cmd> :BufferLineCyclePrev <CR>")
+-- Buffer Management
+map("n", "<TAB>", "<cmd> :bnext <CR>")
+map("n", "<S-Tab>", "<cmd> :bprevious <CR>")
 map("n", "<leader>x", "<cmd> :bd <CR>") -- close current buffer
 map("n", "<leader>X", "<cmd> :bd! <CR>")
 
