@@ -31,6 +31,7 @@ opt.mouse = "a"
 opt.splitbelow = true
 opt.splitright = true
 
+opt.timeout = true
 opt.timeoutlen = 400
 opt.updatetime = 250
 

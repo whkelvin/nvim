@@ -1,3 +1,4 @@
+local wk = require("which-key")
 function map(mode, lhs, rhs, opts)
 	local options = { noremap = true }
 	if opts then
@@ -12,27 +13,74 @@ map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-j>", "<C-w>j")
 
--- NvimTree
-map("n", "<leader>n", ":NvimTreeToggle<CR>")
+wk.register({
+	["<leader>"] = {
+		f = { "<cmd> :Telescope find_files <CR>", "Find Files" },
+	},
+})
+wk.register({
+	["<leader>f"] = {
+		name = "+FileManagement",
+		e = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
+		a = {
+			"<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+			"Find All Files (inc Hidden)",
+		},
+	},
+})
 
--- Buffer Management
-map("n", "<TAB>", "<cmd> :bnext <CR>")
-map("n", "<S-Tab>", "<cmd> :bprevious <CR>")
-map("n", "<leader>x", "<cmd> :bd <CR>") -- close current buffer
-map("n", "<leader>X", "<cmd> :bd! <CR>")
+wk.register({
+	["<leader>"] = {
+		b = { "<cmd> :Telescope buffers<CR>", "List Buffers" },
+	},
+})
+wk.register({
+	["<leader>b"] = {
+		name = "+BufferManagement",
+		x = { "<cmd> :bd <CR>", "Close Current Buffer" },
+		X = { "<cmd> :bd! <CR>", "Force Close Current Buffer" },
+	},
+})
 
--- Telescope
-map("n", "<leader>f", "<cmd> :Telescope find_files <CR>")
-map("n", "<leader>fa", "<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>")
-map("n", "<leader>b", "<cmd> :Telescope buffers<CR>")
-map("n", "<leader>cm", "<cmd> :Telescope git_commits <CR>")
-map("n", "<leader>gt", "<cmd> :Telescope git_status <CR>")
-map("n", "<leader>ss", "<cmd> :Telescope live_grep <CR>")
-map("n", "<leader>s", "<cmd> :lua require('telescope.builtin').current_buffer_fuzzy_find() <CR>")
-map("n", "<leader>e", "<cmd> :Telescope diagnostics bufnr=0 <CR>")
-map("n", "<leader>ee", "<cmd> :Telescope diagnostics <CR>")
+wk.register({
+	["<TAB>"] = { "<cmd> :bnext <CR>", "Next Buffer" },
+})
 
-map("n", "<ESC>", "<cmd> :noh <CR>")
+wk.register({
+	["<S-TAB>"] = { "<cmd> :bprevious <CR>", "Prev Buffer" },
+})
+
+-- search
+wk.register({
+	["<leader>"] = {
+		s = { "<cmd> :Telescope live_grep <CR>", "Search" },
+	},
+})
+
+--lsp
+wk.register({
+	["<leader>l"] = {
+		name = "Lsp Actions",
+		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go To Definition" },
+		i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go To Implementation" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
+		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
+		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go To References" },
+		a = { "<cmd> lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+		p = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format" },
+	},
+})
+
+wk.register({
+	["<leader>e"] = {
+		name = "Diagnostics",
+		l = { "<cmd> :Telescope diagnostics bufnr=0 <CR>", "Show Diagnostics In Current Buffer" },
+		g = { "<cmd> :Telescope diagnostics <CR>", "Show Diagnostics" },
+		h = { "<cmd> lua vim.diagnostic.open_float()<CR>", "Error Hover" },
+		n = { "<cmd> lua vim.diagnostic.goto_next()<CR>", "Error Next" },
+		p = { "<cmd> lua vim.diagnostic.goto_prev()<CR>", "Error Prev" },
+	},
+})
 
 -- Hop
 map(
@@ -60,15 +108,4 @@ map("n", "<leader>/", "<cmd> :HopPattern <cr>")
 map("o", "<leader>/", "<cmd> :HopPattern <cr>")
 map("v", "<leader>/", "<cmd> :HopPattern <cr>")
 
--- LSP
-map("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>")
-map("n", "<leader>im", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-map("n", "<leader>de", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<leader>re", "<cmd>lua vim.lsp.buf.references()<CR>")
-map("n", "<leader>he", "<cmd> lua vim.diagnostic.open_float()<CR>")
-map("n", "<leader>ne", "<cmd> lua vim.diagnostic.goto_next()<CR>")
-map("n", "<leader>pe", "<cmd> lua vim.diagnostic.goto_prev()<CR>")
-map("n", "<leader>a", "<cmd> lua vim.lsp.buf.code_action()<CR>")
---
-map("n", "<leader>p", "<cmd>lua vim.lsp.buf.format()<CR>")
+map("n", "<ESC>", "<cmd> :noh <CR>")

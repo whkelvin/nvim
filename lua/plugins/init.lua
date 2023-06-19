@@ -114,4 +114,8 @@ return require("packer").startup(function(use)
 			require("plugins.configs.winbar")
 		end,
 	})
+
+	use({
+		"folke/which-key.nvim",
+	})
 end)
