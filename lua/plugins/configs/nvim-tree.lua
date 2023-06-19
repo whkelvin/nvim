@@ -1,5 +1,3 @@
-print("loading nvim tree config")
-
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.7
 
