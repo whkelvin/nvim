@@ -18,10 +18,16 @@ wk.register({
 		f = { "<cmd> :Telescope find_files <CR>", "Find Files" },
 	},
 })
+
+wk.register({
+	["<leader>"] = {
+		n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
+	},
+})
+
 wk.register({
 	["<leader>f"] = {
 		name = "+FileManagement",
-		e = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
 		a = {
 			"<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>",
 			"Find All Files (inc Hidden)",

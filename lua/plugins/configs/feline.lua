@@ -386,3 +386,30 @@ feline.setup({
 		},
 	},
 })
+
+local winbar_components = {
+	active = { {} },
+}
+
+winbar_components.active[1][1] = {
+	provider = {
+		name = "file_info",
+		opts = {
+			type = "full-path",
+		},
+	},
+	hl = {
+		fg = colors.white,
+		bg = colors.black2,
+		style = "bold",
+	},
+}
+
+feline.winbar.setup({
+	components = winbar_components,
+	force_inactive = {
+		filetypes = {
+			"startup",
+		},
+	},
+})

@@ -109,13 +109,6 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"whkelvin/winbar.nvim",
-		config = function()
-			require("plugins.configs.winbar")
-		end,
-	})
-
-	use({
 		"folke/which-key.nvim",
 	})
 end)
