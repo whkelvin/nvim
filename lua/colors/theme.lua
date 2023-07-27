@@ -35,7 +35,7 @@ theme.colors = {
 }
 
 theme.base16 = {
-	base00 = "#2E3440",
+	base00 = "3b4252",
 	base01 = "#3B4252",
 	base02 = "#434C5E",
 	base03 = "#4C566A",

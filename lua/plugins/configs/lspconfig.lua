@@ -76,6 +76,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.dart_format.with({
 			args = { "format", "--line-length=120" },
 		}),
+		null_ls.builtins.formatting.fnlfmt.with({
+			filetypes = {
+				"fennel",
+				"fnl",
+				"yuck",
+			},
+		}),
 	},
 	on_attach = on_attach,
 })
