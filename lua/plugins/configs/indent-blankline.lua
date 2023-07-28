@@ -4,7 +4,7 @@ if not present then
 	return
 end
 
-vim.opt.list = true
+vim.opt.list = false
 
 local options = {
 	--show_current_context = true,

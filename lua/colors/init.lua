@@ -1,101 +1,78 @@
-local theme = require("colors/theme")
+local t = require("colors/theme")
 
-local fg = theme.highlight_fg
-local bg = theme.highlight_bg
-local fg_bg = theme.highlight_fg_bg
-local colors = theme.colors
-local black = colors.black
-local black2 = colors.black2
-local blue = colors.blue
-local darker_black = colors.darker_black
-local folder_bg = colors.folder_bg
-local green = colors.green
-local grey = colors.grey
-local grey_fg = colors.grey_fg
-local light_grey = colors.light_grey
-local line = colors.line
-local nord_blue = colors.nord_blue
-local one_bg = colors.one_bg
-local one_bg2 = colors.one_bg2
-local pmenu_bg = colors.pmenu_bg
-local purple = colors.purple
-local red = colors.red
-local white = colors.white
-local yellow = colors.yellow
-local orange = colors.orange
-local one_bg3 = colors.one_bg3
+local fg = t.highlight_fg
+local bg = t.highlight_bg
+local fg_bg = t.highlight_fg_bg
 
--- Comments
-fg("Comment", grey_fg)
+bg("Cursor", t.cursor)
+bg("CursorLine", t.bg2)
 
--- Disable cursor line
-vim.cmd("hi clear CursorLine")
--- Line number
-fg("cursorlinenr", white)
+-- Text Selection
+bg("Visual", t.glass)
 
--- same it bg, so it doesn't appear
-fg("EndOfBuffer", black)
+fg("Comment", t.fgSubtle)
+fg("EndOfBuffer", t.bg)
+fg("SpecialKey", t.bg)
+fg("NonText", t.bg)
 
--- For floating windows
-fg("FloatBorder", blue)
-bg("NormalFloat", darker_black)
+-- Hover Window
+fg_bg("FloatBorder", t.bg1, t.bg1)
+bg("NormalFloat", t.bg1)
 
--- misc
+bg("SignColumn", t.bg)
+fg("LineNr", t.fgSubtle)
+fg("Cursorlinenr", t.blue)
 
--- inactive statuslines as thin lines
-fg("StatusLineNC", one_bg3 .. " gui=underline")
+fg("VertSplit", t.bg2)
+fg_bg("GitSignsAdd", t.green, "NONE")
 
-fg("LineNr", white)
-fg("NvimInternalError", red)
-fg("VertSplit", black)
+fg_bg("GitSignsChange", t.yellow, "NONE")
+fg_bg("GitSignsDelete", t.red, "NONE")
 
-fg_bg("GitSignsAdd", green, "NONE")
-fg_bg("GitSignsChange", yellow, "NONE")
-fg_bg("GitSignsDelete", red, "NONE")
+fg("IndentBlanklineChar", t.fg)
+fg("IndentBlanklineSpaceChar", t.fg)
 
--- Indent blankline plugin
-fg("IndentBlanklineChar", line)
-fg("IndentBlanklineSpaceChar", line)
+fg("DiagnosticHint", t.violet)
+fg("DiagnosticError", t.red)
+fg("DiagnosticWarn", t.yellow)
+fg("DiagnosticInformation", t.green)
 
--- Lsp diagnostics
-fg("DiagnosticHint", purple)
-fg("DiagnosticError", red)
-fg("DiagnosticWarn", yellow)
-fg("DiagnosticInformation", green)
+local nvimTreeBg = t.bg1
+fg_bg("NvimTreeRootFolder", t.yellow, nvimTreeBg)
+fg("NvimTreeOpenedFolderName", t.blue)
+fg("NvimTreeEmptyFolderName", t.blue)
+fg("NvimTreeFolderIcon", t.blue)
+fg("NvimTreeFolderName", t.blue)
+fg_bg("NvimTreeIndentMarker", t.blue, nvimTreeBg)
+fg_bg("NvimTreeVertSplit", nvimTreeBg, nvimTreeBg)
+fg_bg("NvimTreeWindowPicker", t.blue, nvimTreeBg)
+fg_bg("NvimTreeNormal", t.fg, nvimTreeBg)
+fg_bg("NvimTreeEndOfBuffer", nvimTreeBg, nvimTreeBg)
+fg("NvimTreeGitDirty", t.red)
+fg_bg("NvimTreeLineNr", nvimTreeBg, nvimTreeBg)
 
--- NvimTree
-fg("NvimTreeEmptyFolderName", folder_bg)
-fg("NvimTreeEndOfBuffer", darker_black)
-fg("NvimTreeFolderIcon", folder_bg)
-fg("NvimTreeFolderName", folder_bg)
-fg("NvimTreeGitDirty", red)
-fg("NvimTreeIndentMarker", one_bg2)
-bg("NvimTreeNormal", darker_black)
-bg("NvimTreeNormalNC", darker_black)
-fg("NvimTreeOpenedFolderName", folder_bg)
-fg("NvimTreeRootFolder", yellow .. " gui=underline") -- enable underline for root folder in nvim tree
-fg_bg("NvimTreeStatuslineNc", darker_black, darker_black)
-fg_bg("NvimTreeVertSplit", darker_black, darker_black)
-fg_bg("NvimTreeWindowPicker", red, black2)
+bg("TelescopeSelection", t.glass)
+fg_bg("TelescopeBorder", t.bg, t.bg1)
+fg_bg("TelescopeNormal", t.fg1, t.bg1)
 
--- Telescope
-fg_bg("TelescopeBorder", darker_black, darker_black)
-fg_bg("TelescopePromptBorder", black2, black2)
+fg_bg("TelescopePromptTitle", t.bg, t.teal)
+fg_bg("TelescopePromptCounter", t.teal, t.bg2)
+fg_bg("TelescopePromptNormal", t.fg1, t.bg2)
+fg_bg("TelescopePromptPrefix", t.teal, t.bg2)
+fg_bg("TelescopePromptBorder", t.bg2, t.bg2)
 
-fg_bg("TelescopePromptNormal", white, black2)
-fg_bg("TelescopePromptPrefix", yellow, black2)
+fg_bg("TelescopeResultsTitle", t.bg1, t.bg1)
+bg("TelescopeResultsNormal", t.bg1)
+fg_bg("TelescopeResultsBorder", t.bg1, t.bg1)
+fg_bg("TelescopeResultsTitle", t.bg1, t.bg1)
 
-bg("TelescopeNormal", darker_black)
+fg_bg("TelescopePreviewTitle", t.bg1, t.blue)
+fg_bg("TelescopePreviewBorder", t.bg1, t.bg1)
+bg("TelescopePreviewNormal", t.bg1)
 
-fg_bg("TelescopePreviewTitle", black, nord_blue)
-fg_bg("TelescopePromptTitle", black, yellow)
-fg_bg("TelescopeResultsTitle", darker_black, darker_black)
-
-bg("TelescopeSelection", black2)
-
-fg("HopNextKey", blue)
-fg("HopNextKey1", blue)
-fg("HopNextKey2", blue)
+fg("HopNextKey", t.blue)
+fg("HopNextKey1", t.blue)
+fg("HopNextKey2", t.blue)
 
 require("colors/highlights/syntax")
 require("colors/highlights/cmp")
