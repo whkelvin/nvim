@@ -1,5 +1,32 @@
 local theme = {}
 
+-- number is layer
+theme.glass = "#7C869C"
+theme.cursor = "#A9AFBC"
+theme.bg = "#3b4252"
+theme.bg1 = "#3B4252"
+theme.bg2 = "#434C5E"
+theme.bg3 = "#4C566A"
+
+theme.fg = "#d8dee9"
+theme.fg1 = "#d8dee9"
+theme.fg2 = "#d8dee9"
+theme.fg3 = "#d8dee9"
+
+theme.fgSubtle = "#4B5468"
+theme.fgSubtle1 = "#404859"
+theme.fgSubtle2 = "#556077"
+theme.fgSubtle3 = "#606C86"
+
+theme.red = "#BF616A"
+theme.orange = "#D08770"
+theme.yellow = "#EBCB8B"
+theme.green = "#A3BE8C"
+theme.blue = "#81a1c1"
+theme.indigo = "#5e81ac"
+theme.violet = "#b48ead"
+theme.teal = "#8fbcbb"
+
 theme.colors = {
 	white = "#abb2bf",
 	darker_black = "#2a303c",
@@ -35,7 +62,7 @@ theme.colors = {
 }
 
 theme.base16 = {
-	base00 = "3b4252",
+	base00 = "#3b4252",
 	base01 = "#3B4252",
 	base02 = "#434C5E",
 	base03 = "#4C566A",
@@ -54,6 +81,18 @@ theme.base16 = {
 }
 
 local cmd = vim.cmd
+
+theme.hi_bg = function(group, color)
+	cmd("hi " .. group .. " guibg=" .. color)
+end
+
+theme.hi_fg = function(group, color)
+	cmd("hi " .. group .. " guifg=" .. color)
+end
+
+theme.hi_fg_bg = function(group, fg, bg)
+	cmd("hi " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
+end
 
 -- Define bg color
 -- @param group Group
