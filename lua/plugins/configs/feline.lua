@@ -1,32 +1,32 @@
-local colors = require("colors/theme").colors
+local colors = require("colors/theme")
 local line_ok, feline = pcall(require, "feline")
 if not line_ok then
 	return
 end
 
 local nord = {
-	fg = colors.white,
-	bg = colors.black2,
+	fg = colors.fg,
+	bg = colors.bg2,
 	green = colors.green,
 	yellow = colors.yellow,
-	purple = colors.purple,
+	purple = colors.violet,
 	orange = colors.orange,
 	peanut = colors.yellow,
 	red = colors.red,
-	aqua = colors.nord_blue,
-	darkblue = colors.black2,
+	aqua = colors.blue,
+	darkblue = colors.bg1,
 	dark_red = colors.red,
 }
 
 local vi_mode_colors = {
-	NORMAL = "green",
-	OP = "green",
-	INSERT = "yellow",
-	VISUAL = "purple",
-	LINES = "orange",
-	BLOCK = "dark_red",
-	REPLACE = "red",
-	COMMAND = "aqua",
+	NORMAL = colors.green,
+	OP = colors.green,
+	INSERT = colors.yellow,
+	VISUAL = colors.violet,
+	LINES = colors.orange,
+	BLOCK = colors.red,
+	REPLACE = colors.red,
+	COMMAND = colors.teal,
 }
 
 local c = {
@@ -41,7 +41,7 @@ local c = {
 		hl = function()
 			return {
 				fg = require("feline.providers.vi_mode").get_mode_color(),
-				bg = "darkblue",
+				bg = colors.bg2,
 				style = "bold",
 				name = "NeovimModeHLColor",
 			}
@@ -52,8 +52,8 @@ local c = {
 	gitBranch = {
 		provider = "git_branch",
 		hl = {
-			fg = "peanut",
-			bg = "darkblue",
+			fg = colors.yellow,
+			bg = colors.bg2,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -105,19 +105,19 @@ local c = {
 	diagnostic_errors = {
 		provider = "diagnostic_errors",
 		hl = {
-			fg = "red",
+			fg = colors.red,
 		},
 	},
 	diagnostic_warnings = {
 		provider = "diagnostic_warnings",
 		hl = {
-			fg = "yellow",
+			fg = colors.yellow,
 		},
 	},
 	diagnostic_hints = {
 		provider = "diagnostic_hints",
 		hl = {
-			fg = "aqua",
+			fg = colors.violet,
 		},
 	},
 	diagnostic_info = {
@@ -126,8 +126,8 @@ local c = {
 	lsp_client_names = {
 		provider = "lsp_client_names",
 		hl = {
-			fg = "purple",
-			bg = "darkblue",
+			fg = colors.fg,
+			bg = colors.bg2,
 			style = "bold",
 		},
 		left_sep = "left_filled",
@@ -142,8 +142,8 @@ local c = {
 			},
 		},
 		hl = {
-			fg = "purple",
-			bg = "darkblue",
+			fg = colors.fg,
+			bg = colors.bg2,
 			style = "bold",
 		},
 		left_sep = "block",
@@ -245,8 +245,8 @@ winbar_components.active[1][1] = {
 		},
 	},
 	hl = {
-		fg = colors.white,
-		bg = colors.black2,
+		fg = colors.fg,
+		bg = colors.bg2,
 		style = "bold",
 	},
 }

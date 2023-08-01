@@ -1,49 +1,52 @@
-local theme = require("colors/theme")
+local t = require("colors/theme")
+local fg = t.highlight_fg
+local bg = t.highlight_bg
+local fg_bg = t.highlight_fg_bg
 
---theme.highlight_fg_bg("MatchParen", theme.base16.base00, theme.base16.base0F)
---theme.highlight_fg_bg("MatchWord", theme.base16.base00, theme.base16.base0D)
---theme.highlight_fg_bg("Substitute", theme.base16.base00, theme.base16.base0D)
---theme.highlight_fg_bg("IncSearch", theme.base16.base00, theme.base16.base0D)
---theme.highlight_fg_bg("Search", theme.base16.base00, theme.base16.base0D)
----- theme.highlight_fg_bg('Visual', theme.base16.base00, theme.base16.base0D)
---theme.highlight_fg_bg("Normal", theme.base16.base05, theme.base16.base00)
---theme.highlight_fg_bg("Error", theme.base16.base00, theme.base16.base08)
---theme.highlight_fg_bg("ErrorMsg", theme.base16.base08, theme.base16.base00)
---theme.highlight_fg_bg("FoldColumn", theme.base16.base0C, theme.base16.base01)
---theme.highlight_fg_bg("Folded", theme.base16.base03, theme.base16.base01)
---theme.highlight_fg_bg("Search", theme.base16.base00, theme.base16.base0D)
---theme.highlight_fg_bg("WildMenu", theme.base16.base08, theme.base16.base0A)
---theme.highlight_bg("SignColumn", theme.base16.base00)
---theme.highlight_fg("Debug", theme.base16.base08)
---theme.highlight_fg("Title", theme.base16.base0D)
---theme.highlight_fg("Directory", theme.base16.base0D)
---theme.highlight_fg("Exception", theme.base16.base08)
---theme.highlight_fg("Macro", theme.base16.base08)
---theme.highlight_fg("ModeMsg", theme.base16.base0B)
---theme.highlight_fg("MoreMsg", theme.base16.base0B)
---theme.highlight_fg("Question", theme.base16.base0D)
----- theme.highlight_fg("SpecialKey", theme.base16.base03)
---theme.highlight_fg("TooLong", theme.base16.base08)
---theme.highlight_fg("UnderLined", theme.base16.base0B)
---theme.highlight_fg("VisualNOS", theme.base16.base08)
---theme.highlight_fg("WarningMsg", theme.base16.base08)
---theme.highlight_bg("Conceal", "NONE")
---theme.highlight_bg("ColorColumn", theme.base16.base01)
---theme.highlight_bg("CursorColumn", theme.base16.base01)
---theme.highlight_bg("QuickFixLine", theme.base16.base01)
---theme.highlight_bg("StatusLine", "NONE")
---
---theme.highlight_fg("WinSeparator", theme.colors.one_bg2)
---theme.highlight_bg("NormalFloat", theme.colors.darker_black)
---
---theme.highlight_bg("RegistersWindow", theme.colors.darker_black)
+bg("Cursor", t.cursor)
+bg("CursorLine", t.bg2)
 
----- Indent blankline
---IndentBlanklineChar = { fg = line },
---IndentBlanklineSpaceChar = { fg = line },
---
----- Lsp Diagnostics
---DiagnosticHint = { fg = purple },
---DiagnosticError = { fg = red },
---DiagnosticWarn = { fg = yellow },
---DiagnosticInformation = { fg = green },
+-- Text Selection
+bg("Visual", t.glass)
+
+fg("EndOfBuffer", t.bg)
+fg("SpecialKey", t.bg)
+fg("NonText", t.bg)
+
+-- Hover Window
+fg_bg("FloatBorder", t.bg1, t.bg1)
+bg("NormalFloat", t.bg1)
+
+bg("SignColumn", t.bg)
+fg("LineNr", t.fgSubtle)
+fg("Cursorlinenr", t.blue)
+
+fg("VertSplit", t.bg2)
+
+fg_bg("GitSignsAdd", t.green, "NONE")
+fg_bg("GitSignsChange", t.yellow, "NONE")
+fg_bg("GitSignsDelete", t.red, "NONE")
+
+fg("DiagnosticHint", t.violet)
+fg("DiagnosticError", t.red)
+fg("DiagnosticWarn", t.yellow)
+fg("DiagnosticInformation", t.green)
+fg("DiagnosticUnnecessary", t.fg)
+
+fg("HopNextKey", t.blue)
+fg("HopNextKey1", t.blue)
+fg("HopNextKey2", t.blue)
+
+fg_bg("MatchParen", t.bg1, t.yellow)
+fg_bg("Search", t.bg1, t.yellow)
+fg_bg("Substitute", t.bg1, t.teal)
+fg_bg("IncSearch", t.fg, t.bg1)
+
+fg_bg("Error", t.bg1, t.red)
+
+-- cmd line
+fg_bg("WildMenu", t.fg, t.indigo) -- auto complete in cmdline
+fg_bg("ErrorMsg", t.red, t.bg) -- error msg in cmdline
+fg_bg("WarningMsg", t.yellow, t.bg)
+
+fg_bg("WinSeparator", t.fgSubtle, t.bg)

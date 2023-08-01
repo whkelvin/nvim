@@ -1,5 +1,0 @@
-local theme = require("colors/theme")
-vim.api.nvim_set_hl(0, "WinBarPath", { fg = "#FFFFFF", bg = "#ffffff" })
-vim.api.nvim_set_hl(0, "WinBarFile", { fg = "#000000", bg = "#ffffff" })
--- theme.highlight_fg_bg("WinBarPath", theme.base16.base00, theme.base16.base0A)
--- theme.highlight_fg_bg("WinBarFile", theme.base16.base00, theme.base16.base0A)
