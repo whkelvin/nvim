@@ -31,7 +31,13 @@ fg("DiagnosticHint", t.violet)
 fg("DiagnosticError", t.red)
 fg("DiagnosticWarn", t.yellow)
 fg("DiagnosticInformation", t.green)
-fg("DiagnosticUnnecessary", t.fg)
+fg("DiagnosticUnnecessary", t.orange)
+
+fg("DiagnosticUnderlineError", t.red)
+fg("DiagnosticUnderlineWarn", t.orange)
+fg("DiagnosticUnderlineInfo", t.green)
+fg("DiagnosticUnderlineHint", t.violet)
+fg("DiagnosticUnderlineOk", t.green)
 
 fg("HopNextKey", t.blue)
 fg("HopNextKey1", t.blue)
@@ -48,5 +54,14 @@ fg_bg("Error", t.bg1, t.red)
 fg_bg("WildMenu", t.fg, t.indigo) -- auto complete in cmdline
 fg_bg("ErrorMsg", t.red, t.bg) -- error msg in cmdline
 fg_bg("WarningMsg", t.yellow, t.bg)
+fg("MoreMsg", t.green)
+fg("Question", t.green)
+
+fg("Directory", t.teal)
 
 fg_bg("WinSeparator", t.fgSubtle, t.bg)
+
+bg("DiffChange", t.bg)
+bg("DiffAdd", t.bg)
+bg("DiffText", t.bg)
+bg("DiffDelete", t.bg)
