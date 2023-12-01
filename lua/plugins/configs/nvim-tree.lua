@@ -6,15 +6,11 @@ require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
 		width = 50,
-		hide_root_folder = false,
 		side = "left",
 		preserve_window_proportions = true,
 		number = false,
 		relativenumber = false,
 		signcolumn = "yes",
-		mappings = {
-			custom_only = false,
-		},
 		float = {
 			enable = true,
 			open_win_config = function()

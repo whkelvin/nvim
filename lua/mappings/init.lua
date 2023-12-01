@@ -115,3 +115,5 @@ map("o", "<leader>/", "<cmd> :HopPattern <cr>")
 map("v", "<leader>/", "<cmd> :HopPattern <cr>")
 
 map("n", "<ESC>", "<cmd> :noh <CR>")
+
+map("x", "p", "P")
