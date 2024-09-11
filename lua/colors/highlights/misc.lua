@@ -3,6 +3,12 @@ local fg = t.highlight_fg
 local bg = t.highlight_bg
 local fg_bg = t.highlight_fg_bg
 
+bg("Normal", t.bg)
+bg("MsgArea", t.bg)
+
+bg("WinBar", t.bg)
+bg("WinBarNC", t.bg)
+
 bg("Cursor", t.cursor)
 bg("CursorLine", t.bg2)
 

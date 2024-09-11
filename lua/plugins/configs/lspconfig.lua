@@ -37,7 +37,7 @@ lsp_server.lua_ls.setup({
 })
 
 lsp_server.tsserver.setup({
-	filetypes = { "typescript", "javascript" },
+	filetypes = { "typescript", "javascript", "typescriptreact" },
 })
 
 lsp_server.svelte.setup({})
@@ -69,7 +69,7 @@ null_ls.setup({
 				"markdown",
 				"markdown.mdx",
 				"graphql",
-				"handlebars",
+				"Handlebars",
 				"svelte",
 			},
 		}),
@@ -83,6 +83,7 @@ null_ls.setup({
 				"yuck",
 			},
 		}),
+		null_ls.builtins.formatting.csharpier,
 	},
 	on_attach = on_attach,
 })
@@ -92,3 +93,5 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").html.setup({
 	capabilities = capabilities,
 })
+
+require("lspconfig").csharp_ls.setup({})
