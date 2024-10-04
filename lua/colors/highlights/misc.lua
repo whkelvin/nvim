@@ -10,6 +10,7 @@ bg("WinBar", t.bg)
 bg("WinBarNC", t.bg)
 
 bg("Cursor", t.cursor)
+bg("lCursor", t.cursor)
 bg("CursorLine", t.bg2)
 
 -- Text Selection
@@ -52,13 +53,14 @@ fg("HopNextKey2", t.blue)
 fg_bg("MatchParen", t.bg1, t.yellow)
 fg_bg("Search", t.bg1, t.yellow)
 fg_bg("Substitute", t.bg1, t.teal)
-fg_bg("IncSearch", t.fg, t.bg1)
+fg_bg("IncSearch", t.bg1, t.tron)
+fg_bg("CurSearch", t.bg1, t.tron)
 
 fg_bg("Error", t.bg1, t.red)
 
 -- cmd line
 fg_bg("WildMenu", t.fg, t.indigo) -- auto complete in cmdline
-fg_bg("ErrorMsg", t.red, t.bg) -- error msg in cmdline
+fg_bg("ErrorMsg", t.red, t.bg)    -- error msg in cmdline
 fg_bg("WarningMsg", t.yellow, t.bg)
 fg("MoreMsg", t.green)
 fg("Question", t.green)
@@ -71,3 +73,10 @@ bg("DiffChange", t.bg)
 bg("DiffAdd", t.bg)
 bg("DiffText", t.bg)
 bg("DiffDelete", t.bg)
+
+fg("ModeMsg", t.green)
+fg("QuickFixLine", t.green)
+
+fg("Added", t.green)
+fg("Changed", t.yellow)
+fg("Removed", t.red)

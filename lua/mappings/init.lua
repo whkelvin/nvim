@@ -13,79 +13,86 @@ map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-j>", "<C-w>j")
 
-wk.register({
-	["<leader>"] = {
-		f = { "<cmd> :Telescope find_files <CR>", "Find Files" },
+vim.api.nvim_set_keymap("c", "<DOWN>", "<TAB>", {})
+vim.api.nvim_set_keymap("c", "<UP>", "<S-TAB>", {})
+
+wk.add({
+	{ "<leader>n", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+})
+
+wk.add({
+	{ "<leader>o", ":Oil --float <CR>", desc = "Toggle Oil" },
+})
+
+wk.add({
+	{ "<leader>f", "<cmd> :Telescope find_files <CR>", desc = "List Files" },
+})
+
+wk.add({
+	{ "<leader>f", group = "FileManagement" },
+	{
+		"<leader>fa",
+		"<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+		desc = "Find All Files (inc Hidden)",
 	},
 })
 
-wk.register({
-	["<leader>"] = {
-		n = { ":NvimTreeToggle<CR>", "Toggle NvimTree" },
-	},
+wk.add({
+	{ "<leader>b", "<cmd> :Telescope buffers<CR>", desc = "List Buffers" },
 })
 
-wk.register({
-	["<leader>f"] = {
-		name = "+FileManagement",
-		a = {
-			"<cmd> :Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-			"Find All Files (inc Hidden)",
-		},
-	},
+wk.add({
+	{ "<leader>b", group = "BufferManagement" },
+	{ "<leader>bX", "<cmd> :bd! <CR>", desc = "Force Close Current Buffer" },
+	{ "<leader>bx", "<cmd> :bd <CR>", desc = "Close Current Buffer" },
 })
 
-wk.register({
-	["<leader>"] = {
-		b = { "<cmd> :Telescope buffers<CR>", "List Buffers" },
-	},
-})
-wk.register({
-	["<leader>b"] = {
-		name = "+BufferManagement",
-		x = { "<cmd> :bd <CR>", "Close Current Buffer" },
-		X = { "<cmd> :bd! <CR>", "Force Close Current Buffer" },
-	},
+wk.add({
+	{ "<TAB>", "<cmd> :bnext <CR>", desc = "Next Buffer" },
 })
 
-wk.register({
-	["<TAB>"] = { "<cmd> :bnext <CR>", "Next Buffer" },
-})
-
-wk.register({
-	["<S-TAB>"] = { "<cmd> :bprevious <CR>", "Prev Buffer" },
+wk.add({
+	{ "<S-TAB>", "<cmd> :bprevious <CR>", desc = "Prev Buffer" },
 })
 
 -- search
-wk.register({
-	["<leader>"] = {
-		s = { "<cmd> :Telescope live_grep <CR>", "Search" },
-	},
+wk.add({
+	{ "<leader>s", "<cmd> :Telescope live_grep <CR>", desc = "Search" },
 })
 
+--nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>
+--nnoremap gpt <cmd>lua require('goto-preview').goto_preview_type_definition()<CR>
+--nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>
+--nnoremap gpD <cmd>lua require('goto-preview').goto_preview_declaration()<CR>
+--nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
+--nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 --lsp
-wk.register({
-	["<leader>l"] = {
-		name = "Lsp Actions",
-		d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go To Definition" },
-		i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Go To Implementation" },
-		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" },
-		s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "Go To References" },
-		a = { "<cmd> lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-		p = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format" },
+wk.add({
+	{
+		{ "<leader>l", group = "Lsp Actions" },
+		{ "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", desc = "Code Action" },
+		--{ "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Go To Definition" },
+		{ "<leader>ld", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Go To Definition" },
+		{ "<leader>lq", "<cmd>lua require('goto-preview').close_all_win()<CR>", desc = "Go To Definition" },
+		{ "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover" },
+		{
+			"<leader>li",
+			"<cmd>lua vim.lsp.buf.implementation()<CR>",
+			desc = "Go To Implementation",
+		},
+		{ "<leader>lp", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format" },
+		{ "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", desc = "Go To References" },
+		{ "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature Help" },
 	},
 })
 
-wk.register({
-	["<leader>e"] = {
-		name = "Diagnostics",
-		l = { "<cmd> :Telescope diagnostics bufnr=0 <CR>", "Show Diagnostics In Current Buffer" },
-		g = { "<cmd> :Telescope diagnostics <CR>", "Show Diagnostics" },
-		h = { "<cmd> lua vim.diagnostic.open_float()<CR>", "Error Hover" },
-		n = { "<cmd> lua vim.diagnostic.goto_next()<CR>", "Error Next" },
-		p = { "<cmd> lua vim.diagnostic.goto_prev()<CR>", "Error Prev" },
-	},
+wk.add({
+	{ "<leader>e", group = "Diagnostics" },
+	{ "<leader>eg", "<cmd> :Telescope diagnostics <CR>", desc = "Show Diagnostics" },
+	{ "<leader>eh", "<cmd> lua vim.diagnostic.open_float()<CR>", desc = "Error Hover" },
+	{ "<leader>el", "<cmd> :Telescope diagnostics bufnr=0 <CR>", desc = "Show Diagnostics In Current Buffer" },
+	{ "<leader>en", "<cmd> lua vim.diagnostic.goto_next()<CR>", desc = "Error Next" },
+	{ "<leader>ep", "<cmd> lua vim.diagnostic.goto_prev()<CR>", desc = "Error Prev" },
 })
 
 -- Hop

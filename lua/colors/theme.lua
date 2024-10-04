@@ -2,7 +2,8 @@ local theme = {}
 
 -- number is layer
 theme.glass = "#7c869c"
-theme.cursor = "#a9afbc"
+--theme.cursor = "#a9afbc"
+theme.cursor = "#76d9bf"
 theme.bg = "#3b4252"
 theme.bg1 = "#2e3440"
 theme.bg2 = "#434c5e"
@@ -27,6 +28,7 @@ theme.indigo = "#5e81ac"
 theme.violet = "#b48ead"
 theme.teal = "#8fbcbb"
 theme.cyan = "#88c0d0"
+theme.tron = "#76d9bf"
 
 local cmd = vim.cmd
 
@@ -34,14 +36,14 @@ local cmd = vim.cmd
 -- @param group Group
 -- @param color Color
 theme.highlight_bg = function(group, col)
-	cmd("hi " .. group .. " guibg=" .. col)
+  cmd("hi " .. group .. " guibg=" .. col)
 end
 
 -- Define fg color
 -- @param group Group
 -- @param color Color
 theme.highlight_fg = function(group, col)
-	cmd("hi " .. group .. " guifg=" .. col)
+  cmd("hi " .. group .. " guifg=" .. col)
 end
 
 -- Define bg and fg color
@@ -49,11 +51,11 @@ end
 -- @param fgcol Fg Color
 -- @param bgcol Bg Color
 theme.highlight_fg_bg = function(group, fgcol, bgcol)
-	cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
+  cmd("hi " .. group .. " guifg=" .. fgcol .. " guibg=" .. bgcol)
 end
 
 theme.highlight_gui = function(group, guiopt)
-	cmd("hi " .. group .. " gui=" .. guiopt)
+  cmd("hi " .. group .. " gui=" .. guiopt)
 end
 
 return theme
