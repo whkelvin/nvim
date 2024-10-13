@@ -13,32 +13,16 @@ local function on_attach(client, bufnr)
 end
 
 local lsp_server = require("lspconfig")
-lsp_server.lua_ls.setup({
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-})
 
 lsp_server.ts_ls.setup({
-  filetypes = { "typescript", "javascript" },
+  filetypes = { "typescript", "javascript"},
+  single_file_support = false,
 })
+
+lsp_server.denols.setup {
+  single_file_support = false,
+  root_dir = lsp_server.util.root_pattern("deno.json"),
+}
 
 lsp_server.svelte.setup({})
 
@@ -46,6 +30,37 @@ lsp_server.gopls.setup({})
 
 lsp_server.tailwindcss.setup({})
 lsp_server.html.setup({})
+lsp_server.phpactor.setup({})
+lsp_server.lua_ls.setup({
+    on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        version = 'LuaJIT'
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+}
+)
+
 
 local null_ls = require("null-ls")
 null_ls.setup({
@@ -57,7 +72,6 @@ null_ls.setup({
       filetypes = {
         "javascript",
         "javascriptreact",
-        "typescript",
         "typescriptreact",
         "vue",
         "css",
@@ -82,6 +96,8 @@ null_ls.setup({
       },
     }),
     null_ls.builtins.formatting.csharpier,
+    null_ls.builtins.formatting.phpcsfixer,
+    null_ls.builtins.formatting.deno_fmt,
   },
   on_attach = on_attach,
 })

@@ -40,14 +40,17 @@ require("lazy").setup({
 				require("plugins.configs.telescope")
 			end,
 		},
+        {
+          "nvim-telescope/telescope-ui-select.nvim",
+        },
 		{
 			"neovim/nvim-lspconfig",
-			depedencies = { { "hrsh7th/cmp-nvim-lsp" } },
-			config = function(_, _)
+            opts = {},
+			config = function()
 				require("plugins.configs.lspconfig")
 			end,
 		},
-
+        { "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 		{
@@ -142,6 +145,7 @@ require("lazy").setup({
 			event = "BufEnter",
 			config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
 			opts = {
+                height = 20,
 				post_open_hook = function(buf, win)
 					vim.api.nvim_create_autocmd({ "WinLeave" }, {
 						buffer = buf,
@@ -153,6 +157,16 @@ require("lazy").setup({
 				end,
 			},
 		},
+        { 'ThePrimeagen/harpoon'},
+        {
+          "rest-nvim/rest.nvim",
+        },
+        {
+            "ziontee113/icon-picker.nvim",
+            config = function()
+                require("icon-picker").setup({ disable_legacy_commands = true })
+            end
+        }
 	},
 	install = { colorscheme = { "nordtheme" } },
 	checker = { enabled = true },

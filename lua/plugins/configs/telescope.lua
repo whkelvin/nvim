@@ -44,7 +44,6 @@ local options = {
         preview_cutoff = 120,
       },
     },
-    border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     color_devicons = true,
     use_less = true,
@@ -55,7 +54,21 @@ local options = {
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
   },
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown({
+        previewer = false,
+        layout_strategy = "vertical",
+        layout_config = {
+          vertical = {
+            prompt_position = "top",
+          }
+        }
+      })
+    }
+  }
 }
 
 --return options
 telescope.setup(options)
+telescope.load_extension("ui-select")

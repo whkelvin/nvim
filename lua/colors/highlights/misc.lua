@@ -2,6 +2,7 @@ local t = require("colors/theme")
 local fg = t.highlight_fg
 local bg = t.highlight_bg
 local fg_bg = t.highlight_fg_bg
+local undercurl = t.undercurl
 
 bg("Normal", t.bg)
 bg("MsgArea", t.bg)
@@ -69,10 +70,10 @@ fg("Directory", t.teal)
 
 fg_bg("WinSeparator", t.fgSubtle, t.bg)
 
-bg("DiffChange", t.bg)
-bg("DiffAdd", t.bg)
+fg_bg("DiffChange", t.yellow, t.bg)
+fg_bg("DiffAdd", t.green, t.bg)
 bg("DiffText", t.bg)
-bg("DiffDelete", t.bg)
+fg_bg("DiffDelete", t.red, t.bg)
 
 fg("ModeMsg", t.green)
 fg("QuickFixLine", t.green)
@@ -80,3 +81,6 @@ fg("QuickFixLine", t.green)
 fg("Added", t.green)
 fg("Changed", t.yellow)
 fg("Removed", t.red)
+
+undercurl("SpellBad", t.red)
+undercurl("SpellCap", t.yellow)

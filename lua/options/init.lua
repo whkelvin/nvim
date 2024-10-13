@@ -39,6 +39,8 @@ opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cmdheight = 1
 
+opt.pumheight = 20
+
 -- Not sure what these are, but when something breaks, check this
 -- opt.fillchars = { eob = " " }
 -- opt.laststatus = 3 -- global statusline

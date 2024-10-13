@@ -58,4 +58,8 @@ theme.highlight_gui = function(group, guiopt)
   cmd("hi " .. group .. " gui=" .. guiopt)
 end
 
+theme.undercurl = function(group, color)
+  cmd("hi " .. group .. " gui=undercurl " .. "guisp=" .. color)
+end
+
 return theme
