@@ -82,6 +82,7 @@ require("lazy").setup({
         keys = "asdfghjkl;",
       },
     },
+    { "rafamadriz/friendly-snippets" },
     {
       "L3MON4D3/LuaSnip",
       depedencies = { {
@@ -92,6 +93,11 @@ require("lazy").setup({
         history = true,
         updateevents = "TextChanged,TextChangedI",
       },
+      config = function()
+        local luasnip = require "luasnip"
+        luasnip.filetype_extend("typescriptreact", { "html" })
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
     },
     { "jose-elias-alvarez/null-ls.nvim" },
     {
@@ -114,8 +120,8 @@ require("lazy").setup({
         require("plugins.configs.feline")
       end,
     },
-    { "echasnovski/mini.icons", version = "*" },
-    { "folke/which-key.nvim",   depedencies = { { "echasnovski/mini.icons", version = "*" } } },
+    { "echasnovski/mini.icons",         version = "*" },
+    { "folke/which-key.nvim",           depedencies = { { "echasnovski/mini.icons", version = "*" } } },
     {
       "norcalli/nvim-colorizer.lua",
       opts = {
