@@ -18,6 +18,9 @@ lsp_server.ts_ls.setup({
 	filetypes = { "typescript", "javascript" },
 	single_file_support = false,
 	root_dir = lsp_server.util.root_pattern("package.json"),
+	on_attach = function(client)
+		client.handlers["textDocument/publishDiagnostics"] = function() end
+	end,
 })
 
 lsp_server.svelte.setup({})
