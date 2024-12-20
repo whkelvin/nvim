@@ -15,7 +15,7 @@ end
 local lsp_server = require("lspconfig")
 
 lsp_server.ts_ls.setup({
-	filetypes = { "typescript", "javascript" },
+  filetypes = { "tyescript", "javascript", "typescriptreact" },
 	single_file_support = false,
 	root_dir = lsp_server.util.root_pattern("package.json"),
 	on_attach = function(client)
@@ -29,7 +29,9 @@ lsp_server.gopls.setup({})
 
 lsp_server.tailwindcss.setup({})
 lsp_server.html.setup({})
-lsp_server.phpactor.setup({})
+--lsp_server.phpactor.setup({})
+lsp_server.intelephense.setup {}
+lsp_server.kulala_ls.setup {}
 lsp_server.lua_ls.setup({
 	on_init = function(client)
 		if client.workspace_folders then

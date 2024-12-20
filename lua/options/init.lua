@@ -39,7 +39,7 @@ opt.title = true
 opt.clipboard = "unnamedplus"
 opt.cmdheight = 1
 
-opt.pumheight = 20
+opt.pumheight = 5
 
 -- Not sure what these are, but when something breaks, check this
 -- opt.fillchars = { eob = " " }

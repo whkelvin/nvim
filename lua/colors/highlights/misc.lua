@@ -51,11 +51,11 @@ fg("HopNextKey", t.blue)
 fg("HopNextKey1", t.blue)
 fg("HopNextKey2", t.blue)
 
-fg_bg("MatchParen", t.bg1, t.yellow)
-fg_bg("Search", t.bg1, t.yellow)
-fg_bg("Substitute", t.bg1, t.teal)
-fg_bg("IncSearch", t.bg1, t.tron)
-fg_bg("CurSearch", t.bg1, t.tron)
+fg_bg("MatchParen", t.bg, t.blue)
+fg_bg("Search", t.blue, t.glass)
+fg_bg("Substitute", t.bg, t.blue)
+fg_bg("IncSearch", t.bg, t.blue)
+fg_bg("CurSearch", t.bg, t.blue)
 
 fg_bg("Error", t.bg1, t.red)
 

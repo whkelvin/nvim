@@ -1,9 +1,9 @@
 local theme = {}
 
 -- number is layer
-theme.glass = "#7c869c"
---theme.cursor = "#a9afbc"
-theme.cursor = "#76d9bf"
+--theme.glass = "#7c869c"
+theme.glass = "#4c566a"
+theme.cursor = "#a9afbc"
 theme.bg = "#3b4252"
 theme.bg1 = "#2e3440"
 theme.bg2 = "#434c5e"
@@ -28,7 +28,6 @@ theme.indigo = "#5e81ac"
 theme.violet = "#b48ead"
 theme.teal = "#8fbcbb"
 theme.cyan = "#88c0d0"
-theme.tron = "#76d9bf"
 
 local cmd = vim.cmd
 
