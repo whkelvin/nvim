@@ -29,7 +29,7 @@ lsp_server.ts_ls.setup({
   root_dir = lsp_server.util.root_pattern("package.json"),
   on_attach = function(client, buf)
     on_attach(client, buf)
-    client.handlers["textDocument/publishDiagnostics"] = function() end
+    -- client.handlers["textDocument/publishDiagnostics"] = function() end
   end,
 })
 

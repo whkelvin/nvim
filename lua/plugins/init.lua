@@ -30,6 +30,7 @@ require("lazy").setup({
         },
       },
       opts = require("plugins.configs.nvim-tree"),
+      lazy = false
     },
     {
       "nvim-telescope/telescope.nvim",
@@ -70,6 +71,10 @@ require("lazy").setup({
     {
       "lewis6991/gitsigns.nvim",
       opts = require("plugins.configs.gitsigns"),
+      dependencies = {
+        "nvim-tree/nvim-tree.lua",
+      },
+      lazy = false
     },
     {
       "ur4ltz/surround.nvim",
