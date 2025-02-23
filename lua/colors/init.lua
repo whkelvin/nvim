@@ -8,14 +8,5 @@ require("colors/highlights/telescope")
 require("colors/highlights/markdown")
 require("colors/highlights/avante")
 
---testing
---testing
---testing
---testing
---testing
---testing
---testing
---testing
 -- visual multi highlight
 vim.g.VM_highlight_matches = ''
-
