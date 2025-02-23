@@ -10,3 +10,4 @@ require("colors/highlights/avante")
 
 -- visual multi highlight
 vim.g.VM_highlight_matches = ''
+-- this is a test
