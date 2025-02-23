@@ -1,5 +1,4 @@
 local theme = {}
-
 -- number is layer
 --theme.glass = "#7c869c"
 theme.glass = "#4c566a"

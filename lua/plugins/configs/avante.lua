@@ -1,6 +1,6 @@
 return {
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  provider = "claude", -- Recommend using Claude
+  provider = "claude",                  -- Recommend using Claude
   auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
   claude = {
     endpoint = "https://api.anthropic.com",
@@ -23,8 +23,8 @@ return {
       all_theirs = "ca",
       both = "cb",
       cursor = "cc",
-      next = "]x",
-      prev = "[x",
+      next = "cn",
+      prev = "cp",
     },
     suggestion = {
       accept = "<M-l>",
@@ -49,11 +49,11 @@ return {
   windows = {
     ---@type "right" | "left" | "top" | "bottom"
     position = "right", -- the position of the sidebar
-    wrap = true, -- similar to vim.o.wrap
-    width = 30, -- default % based on available width
+    wrap = true,        -- similar to vim.o.wrap
+    width = 30,         -- default % based on available width
     sidebar_header = {
       align = "center", -- left, center, right for title
-      rounded = true,
+      rounded = false,
     },
   },
   highlights = {

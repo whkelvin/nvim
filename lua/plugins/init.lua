@@ -23,11 +23,13 @@ require("lazy").setup({
       },
     },
     {
+      "nvim-tree/nvim-web-devicons",
+      lazy = false,
+    },
+    {
       "nvim-tree/nvim-tree.lua",
-      depedencies = {
-        {
-          "nvim-tree/nvim-web-devicons",
-        },
+      dependencies = {
+        "nvim-tree/nvim-web-devicons",
       },
       opts = require("plugins.configs.nvim-tree"),
       lazy = false
@@ -71,14 +73,13 @@ require("lazy").setup({
     {
       "lewis6991/gitsigns.nvim",
       opts = require("plugins.configs.gitsigns"),
-      dependencies = {
-        "nvim-tree/nvim-tree.lua",
-      },
       lazy = false
     },
     {
-      "ur4ltz/surround.nvim",
-      opts = { mappings_style = "sandwich" },
+      "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      opts = require("plugins.configs.surround")
     },
     {
       "phaazon/hop.nvim",
@@ -115,15 +116,9 @@ require("lazy").setup({
       "kyazdani42/nvim-web-devicons",
     },
     {
-      "feline-nvim/feline.nvim",
-      depedencies = {
-        {
-          "kyazdani42/nvim-web-devicons",
-        },
-      },
-      config = function()
-        require("plugins.configs.feline")
-      end,
+      'nvim-lualine/lualine.nvim',
+      opts = require('plugins.configs.lualine'),
+      dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     { "echasnovski/mini.icons",         version = "*" },
     { "folke/which-key.nvim",           depedencies = { { "echasnovski/mini.icons", version = "*" } } },
@@ -191,6 +186,52 @@ require("lazy").setup({
           ["Add Cursor Down"] = '<S-Down>',
         }
       end
+    },
+    {
+      "yetone/avante.nvim",
+      event = "VeryLazy",
+      lazy = false,
+      version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+      -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+      build = "make",
+      opts = require('plugins.configs.avante'),
+      -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "stevearc/dressing.nvim",
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        --- The below dependencies are optional,
+        "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+        "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+        "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+        "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+        "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+        -- "zbirenbaum/copilot.lua",        -- for providers='copilot'
+        {
+          -- support for image pasting
+          "HakonHarnes/img-clip.nvim",
+          event = "VeryLazy",
+          opts = {
+            -- recommended settings
+            default = {
+              embed_image_as_base64 = false,
+              prompt_for_file_name = false,
+              drag_and_drop = {
+                insert_mode = true,
+              },
+              -- required for Windows users
+              use_absolute_path = true,
+            },
+          },
+        },
+        {
+          -- Make sure to set this up properly if you have lazy=true
+          'MeanderingProgrammer/render-markdown.nvim',
+          opts = require('plugins.configs.markdown'),
+          ft = { "markdown", "Avante" },
+        },
+      },
     }
   },
   install = { colorscheme = { "nordtheme" } },

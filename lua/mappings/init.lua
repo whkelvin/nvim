@@ -1,5 +1,5 @@
 local wk = require("which-key")
-function map(mode, lhs, rhs, opts)
+local map = function(mode, lhs, rhs, opts)
   local options = { noremap = true }
   if opts then
     options = vim.tbl_extend("force", options, opts)
@@ -12,10 +12,6 @@ map("n", "<C-h>", "<C-w>h")
 map("n", "<C-l>", "<C-w>l")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-j>", "<C-w>j")
-
-vim.api.nvim_set_keymap("c", "<DOWN>", "<TAB>", {})
-vim.api.nvim_set_keymap("c", "<UP>", "<S-TAB>", {})
-
 
 wk.add({
   { "<leader>n", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
@@ -115,6 +111,12 @@ wk.add({
   { "<leader>vn", "<cmd>IconPickerInsert nerd_font<cr>", desc = "Nerd Font" },
   { "<leader>vg", "<cmd>IconPickerInsert symbols<cr>",   desc = "glyphs" },
   { "<leader>vs", "<cmd>IconPickerInsert alt_cont<cr>",  desc = "Symbol" },
+})
+
+wk.add({
+  { "<leader>a",  group = "AI" },
+  { "<leader>aa", "<cmd>AvanteToggle<cr>", desc = "Toggle AI Sidebar" },
+  { "<leader>ak", "<cmd>AvanteEdit<cr>",   desc = "Edit Code Block" }
 })
 
 map("n", "<leader>gn", "]s")

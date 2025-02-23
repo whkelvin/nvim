@@ -89,7 +89,11 @@ lsp_server.lua_ls.setup({
     })
   end,
   settings = {
-    Lua = {},
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      }
+    },
   },
   capabilities = cap,
   on_attach = on_attach,
