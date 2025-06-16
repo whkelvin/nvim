@@ -35,17 +35,6 @@ fg_bg("GitSignsAdd", t.green, "NONE")
 fg_bg("GitSignsChange", t.yellow, "NONE")
 fg_bg("GitSignsDelete", t.red, "NONE")
 
-fg("DiagnosticHint", t.violet)
-fg("DiagnosticError", t.red)
-fg("DiagnosticWarn", t.yellow)
-fg("DiagnosticInformation", t.green)
-fg("DiagnosticUnnecessary", t.orange)
-
-fg("DiagnosticUnderlineError", t.red)
-fg("DiagnosticUnderlineWarn", t.orange)
-fg("DiagnosticUnderlineInfo", t.green)
-fg("DiagnosticUnderlineHint", t.violet)
-fg("DiagnosticUnderlineOk", t.green)
 
 fg("HopNextKey", t.blue)
 fg("HopNextKey1", t.blue)
@@ -57,7 +46,25 @@ fg_bg("Substitute", t.bg, t.blue)
 fg_bg("IncSearch", t.bg, t.blue)
 fg_bg("CurSearch", t.bg, t.blue)
 
-fg_bg("Error", t.bg1, t.red)
+
+fg_bg("QuickFixLine", t.fg, t.bg)
+fg_bg("QuickFixStatusLine", t.fg, t.bg)
+fg("DiagnosticHint", t.violet)
+fg("DiagnosticError", t.red)
+fg("DiagnosticWarn", t.yellow)
+fg("DiagnosticInformation", t.green)
+fg("DiagnosticUnnecessary", t.orange)
+fg("DiagnosticUnderlineError", t.red)
+fg("DiagnosticUnderlineWarn", t.orange)
+fg("DiagnosticUnderlineInfo", t.green)
+fg("DiagnosticUnderlineHint", t.violet)
+fg("DiagnosticUnderlineOk", t.green)
+fg_bg('DiagnosticSignError', t.red, t.bg)
+fg_bg('DiagnosticSignWarn', t.yellow, t.bg)
+fg_bg('DiagnosticSignInfo', t.blue, t.bg)
+fg_bg('DiagnosticSignHint', t.violet, t.bg)
+
+fg_bg("Error", t.red, t.bg1)
 
 -- cmd line
 fg_bg("WildMenu", t.fg, t.indigo) -- auto complete in cmdline
@@ -76,7 +83,6 @@ bg("DiffText", t.bg)
 fg_bg("DiffDelete", t.red, t.bg)
 
 fg("ModeMsg", t.green)
-fg("QuickFixLine", t.green)
 
 fg("Added", t.green)
 fg("Changed", t.yellow)
@@ -84,3 +90,6 @@ fg("Removed", t.red)
 
 undercurl("SpellBad", t.red)
 undercurl("SpellCap", t.yellow)
+
+fg_bg("StatusLine", t.fg, t.bg1)
+fg_bg("StatusLineNC", t.fg, t.bg1)

@@ -46,3 +46,4 @@ opt.pumheight = 5
 -- opt.laststatus = 3 -- global statusline
 -- opt.hidden = true
 -- opt.undofile = true
+--opt.switchbuf:append('vsplit')

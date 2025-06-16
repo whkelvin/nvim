@@ -100,8 +100,14 @@ wk.add({
 
 wk.add(
   {
-    { "<leader>g",  group = "Spelling" },
-    { "<leader>gs", "<cmd> lua vim.opt.spell = not(vim.opt.spell:get())<cr>", desc = "Toggle Spell Check" },
+    { "<leader>g",   group = "Git" },
+    { "<leader>glc", '<cmd>GitConflictListQf<cr>',       desc = 'GitListConflicts' },
+    { "<leader>gco", '<cmd>GitConflictChooseOurs<cr>',   desc = 'GitConflictChooseOurs' },
+    { "<leader>gct", '<cmd>GitConflictChooseTheirs<cr>', desc = 'GitConflictChooseTheirs' },
+    { "<leader>gcb", '<cmd>GitConflictChooseBoth<cr>',   desc = 'GitConflictChooseBoth' },
+    { "<leader>gcx", '<cmd>GitConflictChooseNone<cr>',   desc = 'GitConflictChooseNone' },
+    { "<leader>gcn", '<cmd>GitConflictNextConflict<cr>', desc = 'GitConflictNextConflict' },
+    { "<leader>gcp", '<cmd>GitConflictPrevConflict<cr>', desc = 'GitConflictPrevConflict' },
   }
 )
 
@@ -119,9 +125,9 @@ wk.add({
   { "<leader>ak", "<cmd>AvanteEdit<cr>",   desc = "Edit Code Block" }
 })
 
-map("n", "<leader>gn", "]s")
-map("n", "<leader>gp", "[s")
-map("n", "<leader>gg", "zg")
+--map("n", "<leader>gn", "]s")
+--map("n", "<leader>gp", "[s")
+--map("n", "<leader>gg", "zg")
 
 -- Hop
 map(

@@ -25,11 +25,23 @@ return {
   },
   auto_attach = true,
   attach_to_untracked = false,
-  on_attach = function(bufnr)
-    local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-    if filetype == 'NvimTree' or filetype == 'Startup' then
-      return false
+  _on_attach_pre = function(bufnr)
+    local filetype = vim.bo.buftype
+    local excluded_filetypes = {
+      'NvimTree',
+      'Startup',
+      'TelescopePrompt',
+      'fugitive',
+      'gitcommit',
+      'help',
+      'qf',
+    }
+    for _, ft in ipairs(excluded_filetypes) do
+      if filetype == ft then
+        return
+      end
     end
+    return true
   end,
   current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {

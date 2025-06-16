@@ -6,7 +6,7 @@ return {
     endpoint = "https://api.anthropic.com",
     model = "claude-3-5-sonnet-20240620",
     temperature = 0,
-    max_tokens = 4096,
+    max_tokens = 8192,
   },
   behaviour = {
     auto_suggestions = false, -- Experimental stage
@@ -18,13 +18,16 @@ return {
   mappings = {
     --- @class AvanteConflictMappings
     diff = {
-      ours = "co",
-      theirs = "ct",
-      all_theirs = "ca",
-      both = "cb",
-      cursor = "cc",
-      next = "cn",
-      prev = "cp",
+      -- make sure these are the same as mappings defined in mappings
+      -- avante does not override already defined keys maps so we get to use
+      -- git-conflict's keybind to deal with avante changes
+      ours = "<leader>gco",
+      theirs = "<leader>gct",
+      all_theirs = "<leader>gca",
+      both = "<leader>gcb",
+      cursor = "<leader>gcc",
+      next = "<leader>gcn",
+      prev = "<leader>gcp",
     },
     suggestion = {
       accept = "<M-l>",

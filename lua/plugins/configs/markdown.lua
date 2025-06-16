@@ -1,7 +1,7 @@
 return {
   file_types = { "markdown", "Avante" },
   anti_conceal = {
-    enabled = false,
+    enabled = true,
   },
   heading = {
     -- Turn on / off heading icon & background rendering
@@ -14,7 +14,7 @@ return {
     -- The number of '#' in the heading determines the 'level'
     -- The 'level' is used to index into the list using a cycle
     -- If the value is a function the input context contains the nesting level of the heading within sections
-    icons = { '◖█ ', ' ◖█ ', '  ◖█ ', '   ◖█ ', '    ◖█ ', '     ◖█ ' },
+    icons = { '◖█ ', '◖██ ', '◖██ ', '◖███ ', '◖█████ ', '◖███████ ' },
     -- Determines how icons fill the available space:
     --  right:   '#'s are concealed and icon is appended to right side
     --  inline:  '#'s are concealed and icon is inlined on left side

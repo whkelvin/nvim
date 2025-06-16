@@ -6,7 +6,13 @@ local function on_attach(client, bufnr)
       group = augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format({ async = false })
+        vim.lsp.buf.format(
+          {
+            async = false,
+            filter = function(lspClient)
+              return lspClient.name ~= 'ts_ls'
+            end
+          })
       end,
     })
   end
@@ -27,10 +33,7 @@ lsp_server.ts_ls.setup({
   capabilities = cap,
   single_file_support = false,
   root_dir = lsp_server.util.root_pattern("package.json"),
-  on_attach = function(client, buf)
-    on_attach(client, buf)
-    -- client.handlers["textDocument/publishDiagnostics"] = function() end
-  end,
+  on_attach = on_attach,
 })
 
 lsp_server.svelte.setup({
@@ -99,6 +102,7 @@ lsp_server.lua_ls.setup({
   on_attach = on_attach,
 })
 
+
 local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
@@ -127,7 +131,12 @@ null_ls.setup({
         "graphql",
         "Handlebars",
         "svelte",
+        "typescript",
       },
+      --extra_args = {
+      --  "--config",
+      --  ".prettierrc.json"
+      --}
     }),
     null_ls.builtins.formatting.fnlfmt.with({
       filetypes = {
@@ -138,7 +147,7 @@ null_ls.setup({
     }),
     null_ls.builtins.formatting.csharpier,
     null_ls.builtins.formatting.phpcsfixer,
-    null_ls.builtins.formatting.deno_fmt,
+    --null_ls.builtins.formatting.deno_fmt,
   },
   on_attach = on_attach,
 })

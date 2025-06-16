@@ -1,3 +1,4 @@
+local fileUtil = require("plugins.configs.utils.file")
 local colors = require("colors/theme")
 local custom_theme = {
   normal = {
@@ -33,12 +34,12 @@ local custom_theme = {
     z = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
   },
   inactive = {
-    a = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
-    b = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
-    c = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
-    x = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
-    y = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
-    z = { fg = colors.fg, bg = colors.bg2, gui = 'bold' },
+    a = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
+    b = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
+    c = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
+    x = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
+    y = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
+    z = { fg = colors.fgSubtle, bg = colors.bg2, gui = 'bold' },
   },
 }
 
@@ -75,8 +76,14 @@ return {
         "Avante",
         "AvanteSelectedFiles",
         "AvanteInput",
+        "qf"
       },
-      winbar = {},
+      winbar = {
+        "startup",
+        "Avante",
+        "AvanteSelectedFiles",
+        "AvanteInput",
+      },
     },
     ignore_focus = {},
     always_divide_middle = true,
@@ -105,7 +112,19 @@ return {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
-  inactive_winbar = {},
+  winbar = {
+    lualine_a = {
+      function()
+        return fileUtil.file_info({ icon = false }, { type = "full-path" })
+      end
+    },
+  },
+  inactive_winbar = {
+    lualine_a = {
+      function()
+        return fileUtil.file_info({ icon = false }, { type = "full-path" })
+      end
+    },
+  },
   extensions = {}
 }

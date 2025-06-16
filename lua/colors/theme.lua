@@ -28,6 +28,9 @@ theme.violet = "#b48ead"
 theme.teal = "#8fbcbb"
 theme.cyan = "#88c0d0"
 
+theme.lightGreen = "#56615c"
+theme.lightRed = "#5e4552"
+
 local cmd = vim.cmd
 
 -- Define bg color

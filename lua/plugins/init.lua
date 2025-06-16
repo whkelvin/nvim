@@ -23,6 +23,32 @@ require("lazy").setup({
       },
     },
     {
+      'yorickpeterse/nvim-pqf',
+      config = function()
+        require('pqf').setup({
+          signs = {
+            error = { text = '', hl = 'DiagnosticSignError' },
+            warning = { text = '', hl = 'DiagnosticSignWarn' },
+            info = { text = '', hl = 'DiagnosticSignInfo' },
+            hint = { text = '', hl = 'DiagnosticSignHint' },
+          },
+
+          -- By default, only the first line of a multi line message will be shown.
+          -- When this is true, multiple lines will be shown for an entry, separated by
+          -- a space
+          show_multiple_lines = false,
+
+          -- How long filenames in the quickfix are allowed to be. 0 means no limit.
+          -- Filenames above this limit will be truncated from the beginning with
+          -- `filename_truncate_prefix`.
+          max_filename_length = 0,
+
+          -- Prefix to use for truncated filenames.
+          filename_truncate_prefix = '[...]',
+        })
+      end
+    },
+    {
       "nvim-tree/nvim-web-devicons",
       lazy = false,
     },
@@ -188,6 +214,12 @@ require("lazy").setup({
       end
     },
     {
+      'akinsho/git-conflict.nvim',
+      version = "*",
+      --opt = require('plugins.configs.git-conflict'),
+      config = true,
+    },
+    {
       "yetone/avante.nvim",
       event = "VeryLazy",
       lazy = false,
@@ -232,7 +264,18 @@ require("lazy").setup({
           ft = { "markdown", "Avante" },
         },
       },
-    }
+    },
+    {
+      "folke/lazydev.nvim",
+      ft = "lua", -- only load on lua files
+      --opts = {
+      --  library = {
+      --    -- See the configuration section for more details
+      --    -- Load luvit types when the `vim.uv` word is found
+      --    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      --  },
+      --},
+    },
   },
   install = { colorscheme = { "nordtheme" } },
   checker = { enabled = true },
