@@ -112,6 +112,14 @@ wk.add(
 )
 
 wk.add({
+  { "<leader>c", "<cmd>Telescope git_status<CR>", desc = "Git Status" },
+})
+
+wk.add({
+  { "<leader>d", "<cmd>Gitsigns diffthis HEAD<CR>", desc = "Diff This HEAD" },
+})
+
+wk.add({
   { "<leader>v",  group = "Emoji" },
   { "<leader>ve", "<cmd>IconPickerInsert emoji<cr>",     desc = "Emoji" },
   { "<leader>vn", "<cmd>IconPickerInsert nerd_font<cr>", desc = "Nerd Font" },

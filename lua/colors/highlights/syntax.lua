@@ -27,7 +27,7 @@ fg("Identifier", t.fg)
 fg("Float", t.orange)
 fg("Number", t.orange)
 
-fg("Comment", t.fgSubtle)
+fg("Comment", t.fgSubtle2)
 fg("Character", t.green)
 fg("String", t.green)
 fg("Underlined", t.blue)

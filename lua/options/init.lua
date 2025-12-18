@@ -43,6 +43,7 @@ opt.pumheight = 5
 
 -- Not sure what these are, but when something breaks, check this
 -- opt.fillchars = { eob = " " }
+opt.fillchars = { diff = " " } -- Remove "-" prefix from deleted lines in diff view
 -- opt.laststatus = 3 -- global statusline
 -- opt.hidden = true
 -- opt.undofile = true

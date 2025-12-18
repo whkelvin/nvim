@@ -3,6 +3,7 @@ local fg = t.highlight_fg
 local bg = t.highlight_bg
 local fg_bg = t.highlight_fg_bg
 local undercurl = t.undercurl
+local underline = t.underline
 
 bg("Normal", t.bg)
 bg("MsgArea", t.bg)
@@ -13,6 +14,8 @@ bg("WinBarNC", t.bg)
 bg("Cursor", t.cursor)
 bg("lCursor", t.cursor)
 bg("CursorLine", t.bg2)
+-- Explicitly remove underline from CursorLine and ensure it stays that way
+vim.cmd("hi CursorLine gui=NONE guisp=NONE")
 
 -- Text Selection
 bg("Visual", t.glass)
@@ -77,10 +80,25 @@ fg("Directory", t.teal)
 
 fg_bg("WinSeparator", t.fgSubtle, t.bg)
 
-fg_bg("DiffChange", t.yellow, t.bg)
-fg_bg("DiffAdd", t.green, t.bg)
-bg("DiffText", t.bg)
-fg_bg("DiffDelete", t.red, t.bg)
+fg_bg("DiffChange", "NONE", t.diff_change)
+fg_bg("DiffAdd", "NONE", t.diff_add)
+fg_bg("DiffText", "NONE", t.diff_change2)
+fg_bg("DiffDelete", "NONE", t.diff_delete)
+-- Explicitly remove underline from diff groups and ensure guisp is cleared
+vim.cmd("hi! DiffChange gui=NONE guisp=NONE")
+vim.cmd("hi! DiffAdd gui=NONE guisp=NONE")
+vim.cmd("hi! DiffText gui=NONE guisp=NONE")
+vim.cmd("hi! DiffDelete gui=NONE guisp=NONE")
+
+-- Also check and clear any default diff highlights that might have underline
+vim.cmd("hi! link DiffAdd DiffAdd")
+vim.cmd("hi! link DiffChange DiffChange")
+vim.cmd("hi! link DiffText DiffText")
+vim.cmd("hi! link DiffDelete DiffDelete")
+
+-- Force remove underline from any combined cursorline+diff highlights
+vim.cmd("hi! CursorLine gui=NONE guisp=NONE")
+vim.cmd("hi! CursorLineNr gui=NONE guisp=NONE")
 
 fg("ModeMsg", t.green)
 
@@ -93,3 +111,7 @@ undercurl("SpellCap", t.yellow)
 
 fg_bg("StatusLine", t.fg, t.bg1)
 fg_bg("StatusLineNC", t.fg, t.bg1)
+
+-- Fold highlights
+fg_bg("Folded", t.violet, t.bg1)
+fg_bg("FoldColumn", t.violet, t.bg1)

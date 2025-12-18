@@ -31,6 +31,12 @@ theme.cyan = "#88c0d0"
 theme.lightGreen = "#56615c"
 theme.lightRed = "#5e4552"
 
+-- Lighter diff colors
+theme.diff_add = "#475556"       -- green
+theme.diff_change = "#585350"    -- yellow
+theme.diff_change2 = "#353228"   -- yellow for DiffText
+theme.diff_delete = "#5a4a52"   -- red
+
 local cmd = vim.cmd
 
 -- Define bg color
@@ -61,6 +67,10 @@ end
 
 theme.undercurl = function(group, color)
   cmd("hi " .. group .. " gui=undercurl " .. "guisp=" .. color)
+end
+
+theme.underline = function(group, color)
+  cmd("hi " .. group .. " gui=underline guifg=" .. color)
 end
 
 return theme

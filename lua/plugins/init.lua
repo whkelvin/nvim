@@ -99,7 +99,10 @@ require("lazy").setup({
     {
       "lewis6991/gitsigns.nvim",
       opts = require("plugins.configs.gitsigns"),
-      lazy = false
+      lazy = false,
+      config = function(_, opts)
+        require("gitsigns").setup(opts)
+      end,
     },
     {
       "kylechui/nvim-surround",
@@ -201,20 +204,6 @@ require("lazy").setup({
       "ziontee113/icon-picker.nvim",
       config = function()
         require("icon-picker").setup({ disable_legacy_commands = true })
-      end
-    },
-    {
-      "mg979/vim-visual-multi",
-      init = function()
-        vim.g.VM_maps = {
-          ['Find Under'] = '<leader>c',
-          ['Find Subword Under'] = '<leader>c',
-          ["Undo"] = 'u',
-          ["Redo"] = '<C-r>',
-          ["Mouse Cursor"] = '<C-LeftMouse>',
-          ["Add Cursor Up"] = '<S-Up>',
-          ["Add Cursor Down"] = '<S-Down>',
-        }
       end
     },
     {

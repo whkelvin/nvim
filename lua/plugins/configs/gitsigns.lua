@@ -25,8 +25,9 @@ return {
   },
   auto_attach = true,
   attach_to_untracked = false,
-  _on_attach_pre = function(bufnr)
-    local filetype = vim.bo.buftype
+  on_attach = function(bufnr)
+    -- Filter buffers by filetype - return false to prevent attachment
+    local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
     local excluded_filetypes = {
       'NvimTree',
       'Startup',
@@ -38,9 +39,10 @@ return {
     }
     for _, ft in ipairs(excluded_filetypes) do
       if filetype == ft then
-        return
+        return false -- Skip attachment for excluded filetypes
       end
     end
+    -- Return true (or nothing) to allow attachment
     return true
   end,
   current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
