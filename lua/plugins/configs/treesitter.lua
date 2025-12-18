@@ -17,6 +17,7 @@ local options = {
     "graphql",
     "hcl",
     "html",
+    "http",
     "javascript",
     "json",
     "lua",
