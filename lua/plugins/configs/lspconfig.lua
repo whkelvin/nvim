@@ -32,6 +32,7 @@ vim.lsp.config('ts_ls', {
 vim.lsp.enable('html')
 vim.lsp.enable('tailwindcss')
 vim.lsp.enable('svelte')
+vim.lsp.enable('pyright')
 --vim.lsp.config('svelte', {
 --  cmd = { "./node_modules/.bin/svelteserver", "--stdio" },
 --})
